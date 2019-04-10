@@ -1,0 +1,979 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <script>
+    window.themeRuntime = {
+      root: "/",
+      scriptsMap: {},
+      init: {
+        status: false
+      },
+      commentRest: {
+        status: false
+      },
+      versions: {
+        theme: "2.0.3",
+        mdui: "0.4.0",
+        fetch: "3.0.0",
+        es6promise: "4.2.5+7f2b526d",
+        lightgallery: "1.0.1",
+        smoothscroll: "15.2.0"
+      }
+      
+    };
+    console.info("%cCopyright © 2018 - " + new Date().getFullYear() +" Halyul\n"+'Theme Version: ' + themeRuntime.versions.theme +'%c\nhttps://github.com/Halyul/hexo-theme-mdui',"font-size: 14px;color: #3F51B5;","color: #448AFF;text-decoration: none");
+  </script>
+  <!--
+        © HEXO MDUI Theme
+        https://github.com/Halyul/hexo-theme-mdui
+        -->
+
+  <meta charset="UTF-8">
+  <title>博客搭建 - Hexo</title>
+
+  <!-- Favicons -->
+  <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
+  <link rel="icon" sizes="192x192" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <!-- Meta & Info -->
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta name="theme-color" content="#fff">
+
+  <meta name="author" content="Weker">
+  
+      <meta name="description" itemprop="description" content="一直都想做一个自己的博客，一初是准备花一点段时间自己写一个博客站点的，仔细想想，自己完全从零开始是比较费时费力的。除了技术编码，还需要前期的UI设计和功能的考量，以及设计到一些后台数据的管理，都是比较繁琐的工作，另外考虑到自己写的很多地方也会考虑不全，写出的站点未必是稳定的，不够成熟。所以还是选择了使用现有的博客框架来做。(主要还是太懒)">
+  
+  <meta name="keywords" content="blog, hexo, mdui,blog">
+
+  <!--iOS -->
+  <meta name="apple-mobile-web-app-title" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="480">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- The Open Graph protocol -->
+  <meta property="og:url" content="https://wekerSnail.github.io">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="博客搭建 - Hexo | Hexo">
+  <meta property="og:image" content="/images/favicon.png">
+  
+    <meta property="og:description" content="一直都想做一个自己的博客，一初是准备花一点段时间自己写一个博客站点的，仔细想想，自己完全从零开始是比较费时费力的。除了技术编码，还需要前期的UI设计和功能的考量，以及设计到一些后台数据的管理，都是比较繁琐的工作，另外考虑到自己写的很多地方也会考虑不全，写出的站点未必是稳定的，不够成熟。所以还是选择了使用现有的博客框架来做。(主要还是太懒)">
+  
+
+  
+    <meta property="og:article:tag" content="blog">
+  
+
+  
+
+  <!-- Import CSS -->
+  
+    <link rel="stylesheet" href="/css/mdui.css">
+  
+
+  
+
+</head>
+
+
+<body class="mdui-drawer-body-left mdui-theme-primary-teal mdui-theme-accent-deep-orange">
+
+  <style>
+    #spinner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          opacity: 1;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    main {
+      opacity: 0;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      display: none;
+    }
+  </style>
+  <div id="spinner">
+    <style>
+      .spinner {
+
+      -webkit-animation: rotator 1.4s linear infinite;
+              animation: rotator 1.4s linear infinite;
+      }
+
+      @-webkit-keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      @keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      .path {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+              transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+              animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+      }
+
+      @-webkit-keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+
+      @keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+    </style>
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  <main>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-color-white mdui-shadow-0 theme-appbar">
+  <div class="mdui-toolbar theme-toolbar-top">
+    
+      <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--arrow">
+        <i class="mdui-icon">
+          <span></span>
+        </i>
+      </a>
+    
+  </div>
+  <div class="mdui-toolbar theme-toolbar-bottom">
+    <span class="theme-toolbar-bottom__title">Hexo</span>
+    
+      <a href="/search.html" class="mdui-textfield-icon mdui-btn mdui-btn-icon theme-toolbar-bottom__search">
+        <i class="mdui-icon material-icons">&#xe8b6;</i>
+      </a>
+    
+  </div>
+  <div class="mdui-progress theme-appbar__progress" id="progressBar">
+    <div class="mdui-progress-indeterminate"></div>
+  </div>
+</div>
+
+    <div class="mdui-drawer mdui-drawer-full-height theme-drawer" id="drawer">
+  <!-- header -->
+  <div class="theme-drawer__header">
+  <div class="theme-drawer__header__layer-1">
+    <div class="mdui-toolbar theme-toolbar-top">
+      
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--drawer theme-appbar__burger--arrow" id="drawer-back">
+          <i class="mdui-icon">
+            <span></span>
+          </i>
+        </a>
+      
+    </div>
+    <div class="mdui-toolbar theme-toolbar-bottom">
+      <span class="theme-toolbar-bottom__title">Hexo</span>
+    </div>
+  </div>
+  <div class="theme-drawer__header__layer-2" style="background-image: url(/images/bg.png)">
+    <img class="mdui-img-circle theme-drawer__header__layer-2__user__avatar" src="/images/head.jpg">
+    <div class="theme-drawer__header__layer-2__user__info">
+      <div class="theme-drawer__header__layer-2__user__info__author mdui-text-color-white-text">
+        Weker
+      </div>
+      <div class="theme-drawer__header__layer-2__user__info__slogan mdui-text-color-white-secondary">
+        美好的事情即将发生！
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="theme-drawer__warpper">
+    <!-- content -->
+    <div class="theme-drawer__warpper__content">
+  <ul class="mdui-list">
+    <a href="/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe88a;</i>
+      <div class="mdui-list-item-content">首页</div>
+    </a>
+    <a href="/archives/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe149;</i>
+      <div class="mdui-list-item-content">归档</div>
+    </a>
+    <ul class="mdui-list mdui-collapse" mdui-collapse="{accordion: true}">
+      
+        <div class="mdui-collapse-item ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+            <i class="mdui-list-item-icon mdui-icon material-icons">&#xe86e;</i>
+            <div class="mdui-list-item-content">分类</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+          </div>
+          <div class="mdui-collapse-item-body mdui-list">
+            
+              <a href="/categories/github/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                github
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/blog/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                blog
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/categories/canvas/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                canvas
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/小程序/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                小程序
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>3</span>
+              </a>
+            
+              <a href="/categories/js/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                js
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/vscode/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                vscode
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/categories/redux/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                redux
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/wx/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                wx
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+        <div class="mdui-collapse-item ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+            <i class="mdui-list-item-icon mdui-icon fa fa-tags mdui-text-center"></i>
+            <div class="mdui-list-item-content">标签</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+          </div>
+          <div class="mdui-collapse-item-body mdui-list">
+            
+              <a href="/tags/github/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                github
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/blog/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                blog
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/tags/canvas/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                canvas
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/小程序/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                小程序
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>3</span>
+              </a>
+            
+              <a href="/tags/node/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                node
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/js/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                js
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/vscode/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                vscode
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/tags/redux/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                redux
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/wx/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                wx
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+          </div>
+        </div>
+      
+      <div class="mdui-collapse-item ">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe916;</i>
+          <div class="mdui-list-item-content">年份</div>
+          <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-list">
+          
+          
+            <a href="/archives/2019/" class="mdui-list-item mdui-ripple">
+              2019
+            </a>
+          
+            <a href="/archives/2018/" class="mdui-list-item mdui-ripple">
+              2018
+            </a>
+          
+        </div>
+      </div>
+    </ul>
+  </ul>
+  
+    <div class="mdui-divider"></div>
+    <ul class="mdui-list" mdui-collapse="{accordion: true}">
+      
+        
+          
+            <a href="/list" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">&#xe5ca;</i>
+              
+              
+              <div class="mdui-list-item-content">demo</div>
+            </a>
+        
+      
+        
+          
+            <a href="/about" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">about</div>
+            </a>
+        
+      
+    </ul>
+  
+</div>
+
+    <div class="theme-spacer"></div>
+    <!-- footer -->
+    <div class="theme-drawer__warpper__footer">
+  <div class="mdui-typo mdui-typo-caption-opacity">
+    Powered by <a href="http://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme - <a href="//github.com/Halyul/hexo-theme-mdui" target="_blank">Halyul/MDUI</a>
+    <br>
+    <span>
+      Copyright ©
+      <span year></span>
+      Weker
+    </span>
+    
+    
+      <br>
+      <span>
+        最后更新于: 4月 10, 2019
+      </span>
+    
+    
+  </div>
+</div>
+<script type="text/javascript">
+  var copyrightNow = new Date().getFullYear();
+  var textContent = document.querySelector('span[year]')
+  
+    copyrightSince = 2018;
+    if (copyrightSince === copyrightNow) {
+      textContent.textContent = copyrightNow
+    } else {
+      textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+  
+</script>
+
+  </div>
+</div>
+
+    <div id="top"></div>
+
+    <script src="/js/lightgallery.min.js"></script>
+
+    <div id="barba-wrapper">
+      <div class="barba-container"  data-namespace="post">
+        
+
+
+
+  <link rel="stylesheet" href="/css/prism/okaidia.min.css">
+
+
+  <link rel="stylesheet" href="/css/prism/line-number.min.css">
+
+
+<div class="theme-post">
+  <div class="theme-post__background mdui-color-theme"></div>
+  <div class="theme-post__header mdui-color-theme">
+    <div class="theme-post__header__title mdui-text-truncate">
+      博客搭建
+    </div>
+    <div class="theme-spacer"></div>
+    <div class="theme-post__header__actions mdui-valign">
+      <div>
+        <span>编写时间：</span>
+        <span style="float: right">9月 03, 2018</span>
+        
+        <br>
+          <span>最后修改时间：</span>
+          <span>4月 10, 2019</span>
+        
+      </div>
+      
+
+      
+  <div class="theme-post__share">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon" mdui-menu="{target: '#post-share-menu'}">
+      <i class="mdui-icon material-icons">&#xe80d;</i>
+    </button>
+
+    <ul class="mdui-menu" id="post-share-menu">
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://wekerSnail.github.io//2018/09/03/set-blog/index.html" target="_blank" class="mdui-ripple">
+                分享到Facebook
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://plus.google.com/share?url=https://wekerSnail.github.io//2018/09/03/set-blog/index.html" target="_blank" class="mdui-ripple">
+                分享到Google+
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://wekerSnail.github.io//2018/09/03/set-blog/index.html&title=博客搭建" target="_blank" class="mdui-ripple">
+                分享到Linkedin
+            </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://twitter.com/intent/tweet?text=博客搭建&url=https://wekerSnail.github.io//2018/09/03/set-blog/index.html&via=Weker" target="_blank" class="mdui-ripple">
+                分享到Twitter
+            </a>
+        </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+  <div class="theme-post__warpper
+    
+  ">
+    <div class="theme-post__warpper__container">
+      <article class="mdui-card theme-post__card mdui-hoverable">
+        <section class="theme-post__card__warning">
+          这篇文章最后修改于
+          <span id="content-warning"></span>
+          天之前。
+          本页内容可能已经过时！
+        </section>
+        
+        
+          <section class="mdui-card-media">
+            <img src="/images/random/38.png">
+          </section>
+        
+        <section class="mdui-typo theme-post__card__content">
+          <p>一直都想做一个自己的博客，一初是准备花一点段时间自己写一个博客站点的，仔细想想，自己完全从零开始是比较费时费力的。除了技术编码，还需要前期的UI设计和功能的考量，以及设计到一些后台数据的管理，都是比较繁琐的工作，另外考虑到自己写的很多地方也会考虑不全，写出的站点未必是稳定的，不够成熟。所以还是选择了使用现有的博客框架来做。(主要还是太懒)<br>由于 博客一初就是准备搭建在github page上的，所以自然就想到了hexo框架，下面就介绍一下整个hexo建站的流程，也是作为小白的我的一些经验总结吧。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
+<li>首先是在github帐号建仓，<img src="http://wx2.sinaimg.cn/large/99acde33gy1fuwk3q7tjsj20pd0liwfw.jpg" alt></li>
+</ul>
+<p>repository name填入gitName.github.io,例如<em>wekerSnail.github.io</em> <em>这边是为了待会访问能直接用这个地址访问，这是固定格式</em></p>
+<ul>
+<li>安装node  安装完成可以通过命令<code>npm -v //或者 node -v</code> 查看是否能输出版本号，输出则安装成功</li>
+<li>安装git</li>
+<li>通过npm 安装hexo cli <code>npm install hexo -g //全局安装</code></li>
+</ul>
+<h1 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h1><p><em>前面已经把必要的工具基本准备完成，现在开始着手配置和搭建</em></p>
+<h2 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h2><ul>
+<li><p>首先在本地创建一个文件夹，例如<code>mkdir blog</code></p>
+<p>通过hexo 初始化该文件夹<code>hexo init</code></p>
+<p>此时基本的hexo博客已经完成，只是都是默认设置，博客中有一篇hello world的实例文章</p>
+<p>通过<code>hexo g</code>命令生产页面</p>
+<p><code>hexo s</code> 打开本地的预览，命令运行完会默认提示localhost:4000地址打开查看</p>
+</li>
+<li><p>新建一片文章 <code>hexo n &#39;name&#39;</code>  hexo会在source目录生成一个md文件，通过编辑该文件来写博客文章</p>
+</li>
+</ul>
+<h2 id="配置hexo"><a href="#配置hexo" class="headerlink" title="配置hexo"></a>配置hexo</h2><ul>
+<li><p>打开_config.yml文件</p>
+<p>找到deploy：</p>
+<p>填上自己相关的配置</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">deploy<span class="token punctuation">:</span> 
+type<span class="token punctuation">:</span> git
+repo<span class="token punctuation">:</span> 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 <span class="token punctuation">.</span>git
+branch<span class="token punctuation">:</span> master <span class="token comment" spellcheck="true">//注意hexo的配置项值的前面都有一个小空格</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>配置结束安装部署插件</p>
+<pre class="line-numbers language-bash" mdui-tooltip="{content: 'bash'}"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git --save
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装完成就可以开始部署了，输入以下三条命令</p>
+<pre class="line-numbers language-bash" mdui-tooltip="{content: 'bash'}"><code class="language-bash">hexo clean //清除缓存
+hexo g //生成页面
+hexo d //部署页面
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>结束就已经完成部署，此时可以浏览器打开 gitName.github.io来查看线上页面</p>
+</li>
+</ul>
+<h1 id="查看文章"><a href="#查看文章" class="headerlink" title="查看文章"></a>查看文章</h1><ul>
+<li><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">hexo参考</a> <code>hexo 的一些基本命令已经使用方式还是需要熟悉的，方便管理自己的文章</code></li>
+<li><a href="https://www.jianshu.com/p/0130ad32a08d" target="_blank" rel="noopener">markdown语法</a> <code>//hexo是通过markdown语法来书写博客的，属于基本的markdown语法需要熟悉</code></li>
+</ul>
+
+        </section>
+
+        
+          <section class="theme-post__card__license mdui-typo">
+            <span>
+              本文许可协议：
+              
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
+              
+            </span>
+            <br>
+            <span>本文永久链接：<a href="https://wekerSnail.github.io/2018/09/03/set-blog/">https://wekerSnail.github.io/2018/09/03/set-blog/</a></span>
+            
+              <br>
+              <span>本文Markdown：<a href="https://wekerSnail.github.io/2018/09/03/set-blog/set-blog.md">https://wekerSnail.github.io/2018/09/03/set-blog/set-blog.md</a></span>
+            
+          </section>
+        
+
+        
+          <section class="mdui-card-actions theme-post__card__actions">
+            
+              <button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-ripple  mdui-color-red" mdui-tooltip="{content: '打赏', position: 'right'}" mdui-dialog="{target: '#donateDialog'}">
+                <i class="mdui-icon fa fa-beer"></i>
+              </button>
+            
+            <div class="theme-spacer"></div>
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon material-icons">&#xe149;</i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/categories/blog/">
+                    <span>blog</span>
+                  </a>
+                
+              </div>
+            
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon fa fa-tags"></i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/tags/blog/">
+                    <span>blog</span>
+                  </a>
+                
+              </div>
+            
+          </section>
+        
+
+        
+          
+            <script type="text/javascript">
+              themeRuntime.commentRest.function = function (newIdentifier, newUrl, newTitle) {
+                return
+              }
+            </script>
+          
+        
+      </article>
+      
+        <div class="mdui-color-theme theme-post__toc">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" data-href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">1. &#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5F00;&#x59CB;&#x642D;&#x5EFA;" data-href="#&#x5F00;&#x59CB;&#x642D;&#x5EFA;"><span class="toc-number"></span> <span class="toc-text">2. &#x5F00;&#x59CB;&#x642D;&#x5EFA;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x521D;&#x59CB;&#x5316;hexo" data-href="#&#x521D;&#x59CB;&#x5316;hexo"><span class="toc-number"></span> <span class="toc-text">2.1. &#x521D;&#x59CB;&#x5316;hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x914D;&#x7F6E;hexo" data-href="#&#x914D;&#x7F6E;hexo"><span class="toc-number"></span> <span class="toc-text">2.2. &#x914D;&#x7F6E;hexo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x67E5;&#x770B;&#x6587;&#x7AE0;" data-href="#&#x67E5;&#x770B;&#x6587;&#x7AE0;"><span class="toc-number"></span> <span class="toc-text">3. &#x67E5;&#x770B;&#x6587;&#x7AE0;</span></a></li></ol>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="theme-spacer"></div>
+
+  
+    <div class="mdui-color-theme theme-post__toc-fab">
+  <button class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-fab-fixed mdui-hidden-md-up" mdui-menu="{target: '#toc-fab-menu', fixed: true}" id="toc-fab">
+    <i class="mdui-icon material-icons">&#xe242;</i>
+  </button>
+  <ul class="mdui-menu mdui-typo theme-post__toc-fab__menu" id="toc-fab-menu" style="padding: 8px;max-height: 80%">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" data-href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">1. &#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5F00;&#x59CB;&#x642D;&#x5EFA;" data-href="#&#x5F00;&#x59CB;&#x642D;&#x5EFA;"><span class="toc-number"></span> <span class="toc-text">2. &#x5F00;&#x59CB;&#x642D;&#x5EFA;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x521D;&#x59CB;&#x5316;hexo" data-href="#&#x521D;&#x59CB;&#x5316;hexo"><span class="toc-number"></span> <span class="toc-text">2.1. &#x521D;&#x59CB;&#x5316;hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x914D;&#x7F6E;hexo" data-href="#&#x914D;&#x7F6E;hexo"><span class="toc-number"></span> <span class="toc-text">2.2. &#x914D;&#x7F6E;hexo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x67E5;&#x770B;&#x6587;&#x7AE0;" data-href="#&#x67E5;&#x770B;&#x6587;&#x7AE0;"><span class="toc-number"></span> <span class="toc-text">3. &#x67E5;&#x770B;&#x6587;&#x7AE0;</span></a></li></ol>
+  </ul>
+</div>
+
+  
+
+  
+    <div class="theme-post__pagination mdui-color-theme">
+  
+    <div class="theme-post__pagination__prev mdui-ripple mdui-valign">
+      <a href="/2018/09/04/hexo-next/" class="theme-post__pagination__prev__content mdui-text-left">
+        <div>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cb;</i>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">新的文章</span>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          hexo-next主题设置
+        </div>
+      </a>
+    </div>
+  
+
+  
+    <div class="theme-post__pagination__next mdui-ripple mdui-valign">
+      <a href="/2018/08/08/upload-img/" class="theme-post__pagination__next__content mdui-text-right">
+        <div>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">旧的文章</span>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          前端实现图片上传的预览功能
+        </div>
+      </a>
+    </div>
+    
+</div>
+
+  
+
+  
+    <div class="mdui-dialog" id="donateDialog">
+      <div class="mdui-dialog-title">打赏</div>
+      <div class="mdui-dialog-content">
+        <div class="mdui-list">
+          
+            <a href="/img/avatar.png" title="wechat" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-wechat mdui-text-center"></i>&emsp;
+              
+              
+              
+              wechat
+            </a>
+          
+            <a href="https://paypal.com" title="paypay" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-paypal mdui-text-center"></i>&emsp;
+              
+              
+              
+              paypay
+            </a>
+          
+        </div>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple mdui-ripple" mdui-dialog-close>不要</button>
+      </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+  themeRuntime.scriptsMap.post = [];
+  if (document.querySelector('.theme-post__toc-fab__menu > ol') !== null && document.querySelector('.theme-post__toc > ol') !== null) {
+    tocHighlight()
+    function tocHighlight() {
+      var timer;
+      function doWork() {
+        listens.forEach(function(value, index) {
+          value[1]();
+          value[0].classList.remove("mdui-list-item-active");
+        })
+        let actionToc = (listens[listens.reduce(function(r, v, index) {
+          if (v[2] == true) {
+            return index;
+          } else return r;
+        }, undefined)] || [])[0] || listens[0][0];
+        actionToc.classList.add("mdui-list-item-active");
+        if(actionToc.getClientRects().length == 0)return;
+        showToc(actionToc);
+      }
+      function showToc(toc) {
+        let offsetTop = toc.getClientRects()[0].top - cardToc.getClientRects()[0].top - 40;
+        let offsetBottom = toc.getClientRects()[0].bottom - cardToc.getClientRects()[0].bottom + 40;
+        let offset = 0;
+        if (offsetTop < 0) offset = offsetTop;
+        if (offsetBottom > 0) offset = offsetBottom;
+        var targetTop = Math.max(0, Math.min(cardToc.scrollTop + offset, toclist.offsetHeight - cardToc.offsetHeight));
+        clearInterval(timer);
+        timer = setInterval(function() {
+          var now = cardToc.scrollTop;
+          var speed = (targetTop - now) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (Math.abs(now - targetTop) < 1) {
+            clearInterval(timer);
+          }
+          cardToc.scrollTop = now + speed;
+        }, 30);
+      }
+      var listens = [];
+      var cardToc = document.querySelector('.theme-post__toc');
+      var links = cardToc.querySelectorAll(".theme-post__toc__content__link");
+      var toclist = document.querySelector(".theme-post__toc > ol");
+      Array.prototype.forEach.call(links, function(value, index) {
+        var id = (value.getAttribute("href") || "#").slice(1);
+        var element = document.getElementById(id);
+        listens.push([value, function() {
+          var readed = false;
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+          if (element.offsetTop <= scrollTop + element.clientHeight + 64) {
+            readed = true;
+          } else {
+            readed = false;
+          }
+          listens[index][2] = readed;
+        }, false])
+      })
+      doWork();
+      window.addEventListener("scroll", doWork)
+      var listener = {
+        function:  doWork,
+        event: 'scroll',
+        el: window,
+        removed: false
+      }
+      themeRuntime.scriptsMap.post.push(listener)
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var postLastModifiedDate = 1554885241339
+    var today = (new Date()).getTime()
+    var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
+    if (difference >= 100) {
+      document.querySelector('.theme-post__card__warning').style.display = 'block'
+      document.querySelector('#content-warning').textContent = difference
+    }
+  })();
+</script>
+
+<script type="text/javascript">
+  var images = document.querySelectorAll('.theme-post__card__content img')
+  for (i = 0; i < images.length; i++) {
+    //console.log('image added', i)
+    images[i].addEventListener("click", openLG);
+    var listener = {
+      function:  openLG,
+      event: 'click',
+      el: images[i],
+      removed: false
+    }
+    themeRuntime.scriptsMap.post.push(listener)
+  }
+  function openLG() {
+    var img_src = this.getAttribute('src');
+    var img_alt = this.getAttribute('alt');
+    lightGallery(this, {
+      dynamic: true,
+      counter: false,
+      dynamicEl: [{
+        "src": img_src,
+        'subHtml': "<span author>Weker</span><div descr>" + img_alt + "</div>"
+      }],
+    });
+  }
+</script>
+
+
+
+
+      </div>
+    </div>
+  </main>
+
+  <div id="outdated" style="z-index: 9999;">
+    <h6>你的浏览器已经过气辣！</h6>
+    <p>赶紧升级浏览器来访问本站吧！<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">现在就去</a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="关闭">&times;</a></p>
+  </div>
+  <!-- import js -->
+
+
+  <script src="/js/outdatedbrowser.min.js"></script>
+
+
+
+  
+    <script src="/js/js.pure.min.js"></script>
+  
+
+
+<!-- theme js -->
+<script type="text/javascript">
+  (function() {
+    var appbarTopFlag = false;
+    var appbarEl = document.querySelector('.theme-appbar');
+    function appbarShadow() {
+      var bodyScrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      if (bodyScrolled > 0 && !appbarTopFlag) {
+        appbarEl.classList.add('theme-appbar--shadow');
+        appbarTopFlag = true;
+      } else if (bodyScrolled === 0 && appbarTopFlag) {
+        appbarEl.classList.remove('theme-appbar--shadow');
+        appbarTopFlag = false;
+      }
+    }
+    appbarShadow()
+    window.addEventListener('scroll', appbarShadow);
+  })();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  document.querySelector('body').classList.add('theme-loaded')
+</script>
+
+
+
+</body>
+</html>

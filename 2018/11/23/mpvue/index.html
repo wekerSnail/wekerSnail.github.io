@@ -1,0 +1,1100 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <script>
+    window.themeRuntime = {
+      root: "/",
+      scriptsMap: {},
+      init: {
+        status: false
+      },
+      commentRest: {
+        status: false
+      },
+      versions: {
+        theme: "2.0.3",
+        mdui: "0.4.0",
+        fetch: "3.0.0",
+        es6promise: "4.2.5+7f2b526d",
+        lightgallery: "1.0.1",
+        smoothscroll: "15.2.0"
+      }
+      
+    };
+    console.info("%cCopyright © 2018 - " + new Date().getFullYear() +" Halyul\n"+'Theme Version: ' + themeRuntime.versions.theme +'%c\nhttps://github.com/Halyul/hexo-theme-mdui',"font-size: 14px;color: #3F51B5;","color: #448AFF;text-decoration: none");
+  </script>
+  <!--
+        © HEXO MDUI Theme
+        https://github.com/Halyul/hexo-theme-mdui
+        -->
+
+  <meta charset="UTF-8">
+  <title>mpvue - Hexo</title>
+
+  <!-- Favicons -->
+  <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
+  <link rel="icon" sizes="192x192" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <!-- Meta & Info -->
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta name="theme-color" content="#fff">
+
+  <meta name="author" content="Weker">
+  
+      <meta name="description" itemprop="description" content="使用mpvue开发小程序的一些总结">
+  
+  <meta name="keywords" content="blog, hexo, mdui,小程序">
+
+  <!--iOS -->
+  <meta name="apple-mobile-web-app-title" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="480">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- The Open Graph protocol -->
+  <meta property="og:url" content="https://wekerSnail.github.io">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="mpvue - Hexo | Hexo">
+  <meta property="og:image" content="/images/favicon.png">
+  
+    <meta property="og:description" content="使用mpvue开发小程序的一些总结">
+  
+
+  
+    <meta property="og:article:tag" content="小程序">
+  
+
+  
+
+  <!-- Import CSS -->
+  
+    <link rel="stylesheet" href="/css/mdui.css">
+  
+
+  
+
+</head>
+
+
+<body class="mdui-drawer-body-left mdui-theme-primary-teal mdui-theme-accent-deep-orange">
+
+  <style>
+    #spinner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          opacity: 1;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    main {
+      opacity: 0;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      display: none;
+    }
+  </style>
+  <div id="spinner">
+    <style>
+      .spinner {
+
+      -webkit-animation: rotator 1.4s linear infinite;
+              animation: rotator 1.4s linear infinite;
+      }
+
+      @-webkit-keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      @keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      .path {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+              transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+              animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+      }
+
+      @-webkit-keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+
+      @keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+    </style>
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  <main>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-color-white mdui-shadow-0 theme-appbar">
+  <div class="mdui-toolbar theme-toolbar-top">
+    
+      <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--arrow">
+        <i class="mdui-icon">
+          <span></span>
+        </i>
+      </a>
+    
+  </div>
+  <div class="mdui-toolbar theme-toolbar-bottom">
+    <span class="theme-toolbar-bottom__title">Hexo</span>
+    
+      <a href="/search.html" class="mdui-textfield-icon mdui-btn mdui-btn-icon theme-toolbar-bottom__search">
+        <i class="mdui-icon material-icons">&#xe8b6;</i>
+      </a>
+    
+  </div>
+  <div class="mdui-progress theme-appbar__progress" id="progressBar">
+    <div class="mdui-progress-indeterminate"></div>
+  </div>
+</div>
+
+    <div class="mdui-drawer mdui-drawer-full-height theme-drawer" id="drawer">
+  <!-- header -->
+  <div class="theme-drawer__header">
+  <div class="theme-drawer__header__layer-1">
+    <div class="mdui-toolbar theme-toolbar-top">
+      
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--drawer theme-appbar__burger--arrow" id="drawer-back">
+          <i class="mdui-icon">
+            <span></span>
+          </i>
+        </a>
+      
+    </div>
+    <div class="mdui-toolbar theme-toolbar-bottom">
+      <span class="theme-toolbar-bottom__title">Hexo</span>
+    </div>
+  </div>
+  <div class="theme-drawer__header__layer-2" style="background-image: url(/images/bg.png)">
+    <img class="mdui-img-circle theme-drawer__header__layer-2__user__avatar" src="/images/head.jpg">
+    <div class="theme-drawer__header__layer-2__user__info">
+      <div class="theme-drawer__header__layer-2__user__info__author mdui-text-color-white-text">
+        Weker
+      </div>
+      <div class="theme-drawer__header__layer-2__user__info__slogan mdui-text-color-white-secondary">
+        美好的事情即将发生！
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="theme-drawer__warpper">
+    <!-- content -->
+    <div class="theme-drawer__warpper__content">
+  <ul class="mdui-list">
+    <a href="/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe88a;</i>
+      <div class="mdui-list-item-content">首页</div>
+    </a>
+    <a href="/archives/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe149;</i>
+      <div class="mdui-list-item-content">归档</div>
+    </a>
+    <ul class="mdui-list mdui-collapse" mdui-collapse="{accordion: true}">
+      
+        <div class="mdui-collapse-item ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+            <i class="mdui-list-item-icon mdui-icon material-icons">&#xe86e;</i>
+            <div class="mdui-list-item-content">分类</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+          </div>
+          <div class="mdui-collapse-item-body mdui-list">
+            
+              <a href="/categories/github/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                github
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/blog/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                blog
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/categories/canvas/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                canvas
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/小程序/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                小程序
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>3</span>
+              </a>
+            
+              <a href="/categories/js/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                js
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/vscode/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                vscode
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/categories/redux/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                redux
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/wx/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                wx
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+        <div class="mdui-collapse-item ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+            <i class="mdui-list-item-icon mdui-icon fa fa-tags mdui-text-center"></i>
+            <div class="mdui-list-item-content">标签</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+          </div>
+          <div class="mdui-collapse-item-body mdui-list">
+            
+              <a href="/tags/github/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                github
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/blog/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                blog
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/tags/canvas/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                canvas
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/小程序/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                小程序
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>3</span>
+              </a>
+            
+              <a href="/tags/node/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                node
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/js/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                js
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/vscode/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                vscode
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/tags/redux/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                redux
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/wx/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                wx
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+          </div>
+        </div>
+      
+      <div class="mdui-collapse-item ">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe916;</i>
+          <div class="mdui-list-item-content">年份</div>
+          <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-list">
+          
+          
+            <a href="/archives/2019/" class="mdui-list-item mdui-ripple">
+              2019
+            </a>
+          
+            <a href="/archives/2018/" class="mdui-list-item mdui-ripple">
+              2018
+            </a>
+          
+        </div>
+      </div>
+    </ul>
+  </ul>
+  
+    <div class="mdui-divider"></div>
+    <ul class="mdui-list" mdui-collapse="{accordion: true}">
+      
+        
+          
+            <a href="/list" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">&#xe5ca;</i>
+              
+              
+              <div class="mdui-list-item-content">demo</div>
+            </a>
+        
+      
+        
+          
+            <a href="/about" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">about</div>
+            </a>
+        
+      
+    </ul>
+  
+</div>
+
+    <div class="theme-spacer"></div>
+    <!-- footer -->
+    <div class="theme-drawer__warpper__footer">
+  <div class="mdui-typo mdui-typo-caption-opacity">
+    Powered by <a href="http://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme - <a href="//github.com/Halyul/hexo-theme-mdui" target="_blank">Halyul/MDUI</a>
+    <br>
+    <span>
+      Copyright ©
+      <span year></span>
+      Weker
+    </span>
+    
+    
+      <br>
+      <span>
+        最后更新于: 4月 10, 2019
+      </span>
+    
+    
+  </div>
+</div>
+<script type="text/javascript">
+  var copyrightNow = new Date().getFullYear();
+  var textContent = document.querySelector('span[year]')
+  
+    copyrightSince = 2018;
+    if (copyrightSince === copyrightNow) {
+      textContent.textContent = copyrightNow
+    } else {
+      textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+  
+</script>
+
+  </div>
+</div>
+
+    <div id="top"></div>
+
+    <script src="/js/lightgallery.min.js"></script>
+
+    <div id="barba-wrapper">
+      <div class="barba-container"  data-namespace="post">
+        
+
+
+
+  <link rel="stylesheet" href="/css/prism/okaidia.min.css">
+
+
+  <link rel="stylesheet" href="/css/prism/line-number.min.css">
+
+
+<div class="theme-post">
+  <div class="theme-post__background mdui-color-theme"></div>
+  <div class="theme-post__header mdui-color-theme">
+    <div class="theme-post__header__title mdui-text-truncate">
+      mpvue
+    </div>
+    <div class="theme-spacer"></div>
+    <div class="theme-post__header__actions mdui-valign">
+      <div>
+        <span>编写时间：</span>
+        <span style="float: right">11月 23, 2018</span>
+        
+        <br>
+          <span>最后修改时间：</span>
+          <span>4月 10, 2019</span>
+        
+      </div>
+      
+
+      
+  <div class="theme-post__share">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon" mdui-menu="{target: '#post-share-menu'}">
+      <i class="mdui-icon material-icons">&#xe80d;</i>
+    </button>
+
+    <ul class="mdui-menu" id="post-share-menu">
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://wekerSnail.github.io//2018/11/23/mpvue/index.html" target="_blank" class="mdui-ripple">
+                分享到Facebook
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://plus.google.com/share?url=https://wekerSnail.github.io//2018/11/23/mpvue/index.html" target="_blank" class="mdui-ripple">
+                分享到Google+
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://wekerSnail.github.io//2018/11/23/mpvue/index.html&title=mpvue" target="_blank" class="mdui-ripple">
+                分享到Linkedin
+            </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://twitter.com/intent/tweet?text=mpvue&url=https://wekerSnail.github.io//2018/11/23/mpvue/index.html&via=Weker" target="_blank" class="mdui-ripple">
+                分享到Twitter
+            </a>
+        </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+  <div class="theme-post__warpper
+    
+  ">
+    <div class="theme-post__warpper__container">
+      <article class="mdui-card theme-post__card mdui-hoverable">
+        <section class="theme-post__card__warning">
+          这篇文章最后修改于
+          <span id="content-warning"></span>
+          天之前。
+          本页内容可能已经过时！
+        </section>
+        
+        
+          <section class="mdui-card-media">
+            <img src="/images/random/24.png">
+          </section>
+        
+        <section class="mdui-typo theme-post__card__content">
+          <h1 id="mpvue-小程序开发"><a href="#mpvue-小程序开发" class="headerlink" title="mpvue-小程序开发"></a>mpvue-小程序开发</h1><p><a href="http://note.youdao.com/noteshare?id=0a4e6668de883f2ec14c36bbc6a3d294" target="_blank" rel="noopener">有道笔记文档</a></p>
+<h2 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h2><p>使用 <code>mpvue</code> 开发小程序，你将在小程序技术体系的基础上获取到这样一些能力：</p>
+<ul>
+<li>彻底的组件化开发能力：提高代码复用性</li>
+<li>完整的 <code>Vue.js</code> 开发体验</li>
+<li>方便的 <code>Vuex</code> 数据管理方案：方便构建复杂应用</li>
+<li>快捷的 <code>webpack</code> 构建机制：自定义构建策略、开发阶段 hotReload</li>
+<li>支持使用 npm 外部依赖</li>
+<li>使用 <code>Vue.js</code> 命令行工具 vue-cli 快速初始化项目</li>
+<li>H5 代码转换编译成小程序目标代码的能力</li>
+</ul>
+<h2 id="配套设施"><a href="#配套设施" class="headerlink" title="配套设施"></a>配套设施</h2><p><code>mpvue</code> 作为小程序版本的 <code>Vue.js</code>，在框架 SDK 之外，完整的技术体系还包括如下设施。</p>
+<ul>
+<li><a href="http://mpvue.com/build/mpvue-loader" target="_blank" rel="noopener">mpvue-loader</a> 提供 webpack 版本的加载器</li>
+<li><a href="http://mpvue.com/build/mpvue-webpack-target" target="_blank" rel="noopener">mpvue-webpack-target</a> webpack 构建目标</li>
+<li><a href="http://mpvue.com/build/postcss-mpvue-wxss" target="_blank" rel="noopener">postcss-mpvue-wxss</a> 样式代码转换预处理工具</li>
+<li><a href="http://mpvue.com/build/px2rpx-loader" target="_blank" rel="noopener">px2rpx-loader</a> 样式转化插件</li>
+<li><a href="http://mpvue.com/build/mpvue-lint" target="_blank" rel="noopener">mpvue-lint</a> 开发辅助插件，包括语法检查，内存检查等功能</li>
+<li>[官方文档](<a href="http://mpvue.com/）" target="_blank" rel="noopener">http://mpvue.com/）</a></li>
+</ul>
+<p><strong>mpvue-lint会对代码做格式化检查，对编码规范要求比较严格，如果不需要可以项目初始化时不安装，或者注释rules部分的配置</strong></p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token comment" spellcheck="true">//build/webpack.base.config.js   </span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    rules<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token comment" spellcheck="true">/*{
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve('src'), resolve('test')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }*/</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/\.vue$/</span><span class="token punctuation">,</span>
+        loader<span class="token punctuation">:</span> <span class="token string">'mpvue-loader'</span><span class="token punctuation">,</span>
+        options<span class="token punctuation">:</span> vueLoaderConfig
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="mpvue使用vue式的路由跳转"><a href="#mpvue使用vue式的路由跳转" class="headerlink" title="mpvue使用vue式的路由跳转"></a>mpvue使用vue式的路由跳转</h5><ul>
+<li><p>插件支持<code>mpvue-router-patch</code></p>
+</li>
+<li><p>使用</p>
+<pre><code>// main.js
+import Vue from &#39;vue&#39;
+import MpvueRouterPatch from &#39;mpvue-router-patch&#39;
+
+Vue.use(MpvueRouterPatch)
+</code></pre></li>
+<li><p><a href="https://github.com/F-loat/mpvue-router-patch" target="_blank" rel="noopener">文档</a></p>
+</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><pre><code># 3. 全局安装 vue-cli,安装vue时安装过就不需要在安装了
+# 一般是要 sudo 权限的
+$ npm install --global vue-cli@2.9
+
+# 4. 创建一个基于 mpvue-quickstart 模板的新项目
+# 新手一路回车选择默认就可以了
+$ vue init mpvue/mpvue-quickstart my-project
+
+# 安装完成npm run dev之后，会生成一个dist文件夹
+# 使用微信开发者工具导入dist下的项目就可以运行小程序的代码了
+</code></pre><h4 id="语法差异"><a href="#语法差异" class="headerlink" title="语法差异"></a>语法差异</h4><ol>
+<li><p>文件结构</p>
+<ul>
+<li><p>小程序文件由四个文件构成<code>json、wxml、wxss、js</code></p>
+</li>
+<li><p>mpvue由两个文件构成三个文件构成<code>main.json、index.vue、main.js</code></p>
+</li>
+<li><p>mpvue .vue文件结构</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token operator">&lt;</span>template<span class="token operator">></span>
+<span class="token comment" spellcheck="true">//wxml</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>style<span class="token operator">></span>
+<span class="token comment" spellcheck="true">//wxss</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//js</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>main.js为mpvue入口文件</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token comment" spellcheck="true">//引入vue</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./index'</span> <span class="token comment" spellcheck="true">//引入.vue组件</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//生产vue实例</span>
+app<span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//挂载实例</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li><p>配置部分</p>
+<ul>
+<li>文件目录<code>src/app.json</code></li>
+<li>配置参数和小程序官方一致<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html" target="_blank" rel="noopener">参考文档</a></li>
+</ul>
+</li>
+<li><p>wxml</p>
+<ul>
+<li>小程序所用标签皆可直接在mpvue中直接使用</li>
+<li>mpvue中直接使用div会编译成view标签</li>
+<li>小程序<code>wx:if wx:else</code>对应mpvue中<code>v-if v-else</code></li>
+<li>小程序<code>wx:for</code> 对应mpvue中<code>v-for</code></li>
+<li>小程序<code>&lt;text&gt;&lt;/text&gt;</code>写法和mpvue一致</li>
+<li>小程序动态参数属写法<code>attr=&quot;&quot;</code>对应mpvue<code>:attr=&quot;attr&quot;</code></li>
+<li>除此之外vue原生支持的动态绑定class mpvue也支持 <code>:class=&quot;class&quot;</code>，但此处不支持函数式的class返回值</li>
+</ul>
+</li>
+<li><p>wxss</p>
+<ul>
+<li>mpvue支持npm安装css预处理器<code>sass、less、stulys...</code></li>
+<li>mpvue会把style中的px转换成rpx，若不希望装换可写成大写的PX</li>
+</ul>
+</li>
+<li><p>js</p>
+<ul>
+<li>mpvue的js写法基本保持了vue原生的写法，支持vue的所有生命周期，也可以使用小程序的生命周期</li>
+<li>mpvue的数据变化支持双向绑定</li>
+<li>mpvue可直接调用wx的api</li>
+</ul>
+</li>
+<li><p>vuex的使用</p>
+<ul>
+<li><p>store.js文件 //使用基本和原生vuex一样</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token comment" spellcheck="true">//引入vue</span>
+<span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">'vuex'</span> <span class="token comment" spellcheck="true">//引入 vuex</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//使用vuex</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    count<span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    increment<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> obj <span class="token operator">=</span> state
+      obj<span class="token punctuation">.</span>count <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    decrement<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> obj <span class="token operator">=</span> state
+      obj<span class="token punctuation">.</span>count <span class="token operator">-</span><span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> store
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="mpvue注意点"><a href="#mpvue注意点" class="headerlink" title="mpvue注意点"></a>mpvue注意点</h4><ol>
+<li><code>mpvue-router-patch</code>的路由插件不是必须的，可以使用微信官方的路由api实现</li>
+<li>mpvue新增页面之后，需要重启服务，重新编译新文件，否则新页面会无法加载</li>
+<li>小程序的事件 bind 需要替换为 @</li>
+<li>mpvue不支持自定义指令</li>
+<li>小程序dom操作不友好，ref使用不好</li>
+<li>小程序html中引入数据不支持函数，类似class不支持函数（return value方式）</li>
+</ol>
+
+        </section>
+
+        
+          <section class="theme-post__card__license mdui-typo">
+            <span>
+              本文许可协议：
+              
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
+              
+            </span>
+            <br>
+            <span>本文永久链接：<a href="https://wekerSnail.github.io/2018/11/23/mpvue/">https://wekerSnail.github.io/2018/11/23/mpvue/</a></span>
+            
+              <br>
+              <span>本文Markdown：<a href="https://wekerSnail.github.io/2018/11/23/mpvue/mpvue.md">https://wekerSnail.github.io/2018/11/23/mpvue/mpvue.md</a></span>
+            
+          </section>
+        
+
+        
+          <section class="mdui-card-actions theme-post__card__actions">
+            
+              <button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-ripple  mdui-color-red" mdui-tooltip="{content: '打赏', position: 'right'}" mdui-dialog="{target: '#donateDialog'}">
+                <i class="mdui-icon fa fa-beer"></i>
+              </button>
+            
+            <div class="theme-spacer"></div>
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon material-icons">&#xe149;</i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/categories/小程序/">
+                    <span>小程序</span>
+                  </a>
+                
+              </div>
+            
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon fa fa-tags"></i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/tags/小程序/">
+                    <span>小程序</span>
+                  </a>
+                
+              </div>
+            
+          </section>
+        
+
+        
+          
+            <script type="text/javascript">
+              themeRuntime.commentRest.function = function (newIdentifier, newUrl, newTitle) {
+                return
+              }
+            </script>
+          
+        
+      </article>
+      
+        <div class="mdui-color-theme theme-post__toc">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#mpvue-&#x5C0F;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;" data-href="#mpvue-&#x5C0F;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;"><span class="toc-number"></span> <span class="toc-text">1. mpvue-&#x5C0F;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E3B;&#x8981;&#x7279;&#x6027;" data-href="#&#x4E3B;&#x8981;&#x7279;&#x6027;"><span class="toc-number"></span> <span class="toc-text">1.1. &#x4E3B;&#x8981;&#x7279;&#x6027;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x914D;&#x5957;&#x8BBE;&#x65BD;" data-href="#&#x914D;&#x5957;&#x8BBE;&#x65BD;"><span class="toc-number"></span> <span class="toc-text">1.2. &#x914D;&#x5957;&#x8BBE;&#x65BD;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#mpvue&#x4F7F;&#x7528;vue&#x5F0F;&#x7684;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;" data-href="#mpvue&#x4F7F;&#x7528;vue&#x5F0F;&#x7684;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;"><span class="toc-number"></span> <span class="toc-text">1.2.0.0.1. mpvue&#x4F7F;&#x7528;vue&#x5F0F;&#x7684;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4F7F;&#x7528;" data-href="#&#x4F7F;&#x7528;"><span class="toc-number"></span> <span class="toc-text">1.2.1. &#x4F7F;&#x7528;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x8BED;&#x6CD5;&#x5DEE;&#x5F02;" data-href="#&#x8BED;&#x6CD5;&#x5DEE;&#x5F02;"><span class="toc-number"></span> <span class="toc-text">1.2.1.1. &#x8BED;&#x6CD5;&#x5DEE;&#x5F02;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#mpvue&#x6CE8;&#x610F;&#x70B9;" data-href="#mpvue&#x6CE8;&#x610F;&#x70B9;"><span class="toc-number"></span> <span class="toc-text">1.2.1.2. mpvue&#x6CE8;&#x610F;&#x70B9;</span></a></li></ol></li></ol>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="theme-spacer"></div>
+
+  
+    <div class="mdui-color-theme theme-post__toc-fab">
+  <button class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-fab-fixed mdui-hidden-md-up" mdui-menu="{target: '#toc-fab-menu', fixed: true}" id="toc-fab">
+    <i class="mdui-icon material-icons">&#xe242;</i>
+  </button>
+  <ul class="mdui-menu mdui-typo theme-post__toc-fab__menu" id="toc-fab-menu" style="padding: 8px;max-height: 80%">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#mpvue-&#x5C0F;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;" data-href="#mpvue-&#x5C0F;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;"><span class="toc-number"></span> <span class="toc-text">1. mpvue-&#x5C0F;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E3B;&#x8981;&#x7279;&#x6027;" data-href="#&#x4E3B;&#x8981;&#x7279;&#x6027;"><span class="toc-number"></span> <span class="toc-text">1.1. &#x4E3B;&#x8981;&#x7279;&#x6027;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x914D;&#x5957;&#x8BBE;&#x65BD;" data-href="#&#x914D;&#x5957;&#x8BBE;&#x65BD;"><span class="toc-number"></span> <span class="toc-text">1.2. &#x914D;&#x5957;&#x8BBE;&#x65BD;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#mpvue&#x4F7F;&#x7528;vue&#x5F0F;&#x7684;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;" data-href="#mpvue&#x4F7F;&#x7528;vue&#x5F0F;&#x7684;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;"><span class="toc-number"></span> <span class="toc-text">1.2.0.0.1. mpvue&#x4F7F;&#x7528;vue&#x5F0F;&#x7684;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4F7F;&#x7528;" data-href="#&#x4F7F;&#x7528;"><span class="toc-number"></span> <span class="toc-text">1.2.1. &#x4F7F;&#x7528;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x8BED;&#x6CD5;&#x5DEE;&#x5F02;" data-href="#&#x8BED;&#x6CD5;&#x5DEE;&#x5F02;"><span class="toc-number"></span> <span class="toc-text">1.2.1.1. &#x8BED;&#x6CD5;&#x5DEE;&#x5F02;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#mpvue&#x6CE8;&#x610F;&#x70B9;" data-href="#mpvue&#x6CE8;&#x610F;&#x70B9;"><span class="toc-number"></span> <span class="toc-text">1.2.1.2. mpvue&#x6CE8;&#x610F;&#x70B9;</span></a></li></ol></li></ol>
+  </ul>
+</div>
+
+  
+
+  
+    <div class="theme-post__pagination mdui-color-theme">
+  
+    <div class="theme-post__pagination__prev mdui-ripple mdui-valign">
+      <a href="/2018/11/28/wepy-mpvue/" class="theme-post__pagination__prev__content mdui-text-left">
+        <div>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cb;</i>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">新的文章</span>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          wepy-mpvue对比
+        </div>
+      </a>
+    </div>
+  
+
+  
+    <div class="theme-post__pagination__next mdui-ripple mdui-valign">
+      <a href="/2018/09/28/wx-pay/" class="theme-post__pagination__next__content mdui-text-right">
+        <div>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">旧的文章</span>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          微信支付IOS的坑点
+        </div>
+      </a>
+    </div>
+    
+</div>
+
+  
+
+  
+    <div class="mdui-dialog" id="donateDialog">
+      <div class="mdui-dialog-title">打赏</div>
+      <div class="mdui-dialog-content">
+        <div class="mdui-list">
+          
+            <a href="/img/avatar.png" title="wechat" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-wechat mdui-text-center"></i>&emsp;
+              
+              
+              
+              wechat
+            </a>
+          
+            <a href="https://paypal.com" title="paypay" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-paypal mdui-text-center"></i>&emsp;
+              
+              
+              
+              paypay
+            </a>
+          
+        </div>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple mdui-ripple" mdui-dialog-close>不要</button>
+      </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+  themeRuntime.scriptsMap.post = [];
+  if (document.querySelector('.theme-post__toc-fab__menu > ol') !== null && document.querySelector('.theme-post__toc > ol') !== null) {
+    tocHighlight()
+    function tocHighlight() {
+      var timer;
+      function doWork() {
+        listens.forEach(function(value, index) {
+          value[1]();
+          value[0].classList.remove("mdui-list-item-active");
+        })
+        let actionToc = (listens[listens.reduce(function(r, v, index) {
+          if (v[2] == true) {
+            return index;
+          } else return r;
+        }, undefined)] || [])[0] || listens[0][0];
+        actionToc.classList.add("mdui-list-item-active");
+        if(actionToc.getClientRects().length == 0)return;
+        showToc(actionToc);
+      }
+      function showToc(toc) {
+        let offsetTop = toc.getClientRects()[0].top - cardToc.getClientRects()[0].top - 40;
+        let offsetBottom = toc.getClientRects()[0].bottom - cardToc.getClientRects()[0].bottom + 40;
+        let offset = 0;
+        if (offsetTop < 0) offset = offsetTop;
+        if (offsetBottom > 0) offset = offsetBottom;
+        var targetTop = Math.max(0, Math.min(cardToc.scrollTop + offset, toclist.offsetHeight - cardToc.offsetHeight));
+        clearInterval(timer);
+        timer = setInterval(function() {
+          var now = cardToc.scrollTop;
+          var speed = (targetTop - now) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (Math.abs(now - targetTop) < 1) {
+            clearInterval(timer);
+          }
+          cardToc.scrollTop = now + speed;
+        }, 30);
+      }
+      var listens = [];
+      var cardToc = document.querySelector('.theme-post__toc');
+      var links = cardToc.querySelectorAll(".theme-post__toc__content__link");
+      var toclist = document.querySelector(".theme-post__toc > ol");
+      Array.prototype.forEach.call(links, function(value, index) {
+        var id = (value.getAttribute("href") || "#").slice(1);
+        var element = document.getElementById(id);
+        listens.push([value, function() {
+          var readed = false;
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+          if (element.offsetTop <= scrollTop + element.clientHeight + 64) {
+            readed = true;
+          } else {
+            readed = false;
+          }
+          listens[index][2] = readed;
+        }, false])
+      })
+      doWork();
+      window.addEventListener("scroll", doWork)
+      var listener = {
+        function:  doWork,
+        event: 'scroll',
+        el: window,
+        removed: false
+      }
+      themeRuntime.scriptsMap.post.push(listener)
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var postLastModifiedDate = 1554885241339
+    var today = (new Date()).getTime()
+    var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
+    if (difference >= 100) {
+      document.querySelector('.theme-post__card__warning').style.display = 'block'
+      document.querySelector('#content-warning').textContent = difference
+    }
+  })();
+</script>
+
+<script type="text/javascript">
+  var images = document.querySelectorAll('.theme-post__card__content img')
+  for (i = 0; i < images.length; i++) {
+    //console.log('image added', i)
+    images[i].addEventListener("click", openLG);
+    var listener = {
+      function:  openLG,
+      event: 'click',
+      el: images[i],
+      removed: false
+    }
+    themeRuntime.scriptsMap.post.push(listener)
+  }
+  function openLG() {
+    var img_src = this.getAttribute('src');
+    var img_alt = this.getAttribute('alt');
+    lightGallery(this, {
+      dynamic: true,
+      counter: false,
+      dynamicEl: [{
+        "src": img_src,
+        'subHtml': "<span author>Weker</span><div descr>" + img_alt + "</div>"
+      }],
+    });
+  }
+</script>
+
+
+
+
+      </div>
+    </div>
+  </main>
+
+  <div id="outdated" style="z-index: 9999;">
+    <h6>你的浏览器已经过气辣！</h6>
+    <p>赶紧升级浏览器来访问本站吧！<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">现在就去</a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="关闭">&times;</a></p>
+  </div>
+  <!-- import js -->
+
+
+  <script src="/js/outdatedbrowser.min.js"></script>
+
+
+
+  
+    <script src="/js/js.pure.min.js"></script>
+  
+
+
+<!-- theme js -->
+<script type="text/javascript">
+  (function() {
+    var appbarTopFlag = false;
+    var appbarEl = document.querySelector('.theme-appbar');
+    function appbarShadow() {
+      var bodyScrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      if (bodyScrolled > 0 && !appbarTopFlag) {
+        appbarEl.classList.add('theme-appbar--shadow');
+        appbarTopFlag = true;
+      } else if (bodyScrolled === 0 && appbarTopFlag) {
+        appbarEl.classList.remove('theme-appbar--shadow');
+        appbarTopFlag = false;
+      }
+    }
+    appbarShadow()
+    window.addEventListener('scroll', appbarShadow);
+  })();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  document.querySelector('body').classList.add('theme-loaded')
+</script>
+
+
+
+</body>
+</html>

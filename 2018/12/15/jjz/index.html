@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <script>
+    window.themeRuntime = {
+      root: "/",
+      scriptsMap: {},
+      init: {
+        status: false
+      },
+      commentRest: {
+        status: false
+      },
+      versions: {
+        theme: "2.0.3",
+        mdui: "0.4.0",
+        fetch: "3.0.0",
+        es6promise: "4.2.5+7f2b526d",
+        lightgallery: "1.0.1",
+        smoothscroll: "15.2.0"
+      }
+      
+    };
+    console.info("%cCopyright © 2018 - " + new Date().getFullYear() +" Halyul\n"+'Theme Version: ' + themeRuntime.versions.theme +'%c\nhttps://github.com/Halyul/hexo-theme-mdui',"font-size: 14px;color: #3F51B5;","color: #448AFF;text-decoration: none");
+  </script>
+  <!--
+        © HEXO MDUI Theme
+        https://github.com/Halyul/hexo-theme-mdui
+        -->
+
+  <meta charset="UTF-8">
+  <title>canvas接红包游戏 - Hexo</title>
+
+  <!-- Favicons -->
+  <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
+  <link rel="icon" sizes="192x192" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <!-- Meta & Info -->
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta name="theme-color" content="#fff">
+
+  <meta name="author" content="Weker">
+  
+      <meta name="description" itemprop="description" content="基于canvas的接红包游戏">
+  
+  <meta name="keywords" content="blog, hexo, mdui,canvas">
+
+  <!--iOS -->
+  <meta name="apple-mobile-web-app-title" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="480">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- The Open Graph protocol -->
+  <meta property="og:url" content="https://wekerSnail.github.io">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="canvas接红包游戏 - Hexo | Hexo">
+  <meta property="og:image" content="/images/favicon.png">
+  
+    <meta property="og:description" content="基于canvas的接红包游戏">
+  
+
+  
+    <meta property="og:article:tag" content="canvas">
+  
+
+  
+
+  <!-- Import CSS -->
+  
+    <link rel="stylesheet" href="/css/mdui.css">
+  
+
+  
+
+</head>
+
+
+<body class="mdui-drawer-body-left mdui-theme-primary-teal mdui-theme-accent-deep-orange">
+
+  <style>
+    #spinner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          opacity: 1;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    main {
+      opacity: 0;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      display: none;
+    }
+  </style>
+  <div id="spinner">
+    <style>
+      .spinner {
+
+      -webkit-animation: rotator 1.4s linear infinite;
+              animation: rotator 1.4s linear infinite;
+      }
+
+      @-webkit-keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      @keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      .path {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+              transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+              animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+      }
+
+      @-webkit-keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+
+      @keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+    </style>
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  <main>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-color-white mdui-shadow-0 theme-appbar">
+  <div class="mdui-toolbar theme-toolbar-top">
+    
+      <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--arrow">
+        <i class="mdui-icon">
+          <span></span>
+        </i>
+      </a>
+    
+  </div>
+  <div class="mdui-toolbar theme-toolbar-bottom">
+    <span class="theme-toolbar-bottom__title">Hexo</span>
+    
+      <a href="/search.html" class="mdui-textfield-icon mdui-btn mdui-btn-icon theme-toolbar-bottom__search">
+        <i class="mdui-icon material-icons">&#xe8b6;</i>
+      </a>
+    
+  </div>
+  <div class="mdui-progress theme-appbar__progress" id="progressBar">
+    <div class="mdui-progress-indeterminate"></div>
+  </div>
+</div>
+
+    <div class="mdui-drawer mdui-drawer-full-height theme-drawer" id="drawer">
+  <!-- header -->
+  <div class="theme-drawer__header">
+  <div class="theme-drawer__header__layer-1">
+    <div class="mdui-toolbar theme-toolbar-top">
+      
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--drawer theme-appbar__burger--arrow" id="drawer-back">
+          <i class="mdui-icon">
+            <span></span>
+          </i>
+        </a>
+      
+    </div>
+    <div class="mdui-toolbar theme-toolbar-bottom">
+      <span class="theme-toolbar-bottom__title">Hexo</span>
+    </div>
+  </div>
+  <div class="theme-drawer__header__layer-2" style="background-image: url(/images/bg.png)">
+    <img class="mdui-img-circle theme-drawer__header__layer-2__user__avatar" src="/images/head.jpg">
+    <div class="theme-drawer__header__layer-2__user__info">
+      <div class="theme-drawer__header__layer-2__user__info__author mdui-text-color-white-text">
+        Weker
+      </div>
+      <div class="theme-drawer__header__layer-2__user__info__slogan mdui-text-color-white-secondary">
+        美好的事情即将发生！
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="theme-drawer__warpper">
+    <!-- content -->
+    <div class="theme-drawer__warpper__content">
+  <ul class="mdui-list">
+    <a href="/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe88a;</i>
+      <div class="mdui-list-item-content">首页</div>
+    </a>
+    <a href="/archives/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe149;</i>
+      <div class="mdui-list-item-content">归档</div>
+    </a>
+    <ul class="mdui-list mdui-collapse" mdui-collapse="{accordion: true}">
+      
+        <div class="mdui-collapse-item ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+            <i class="mdui-list-item-icon mdui-icon material-icons">&#xe86e;</i>
+            <div class="mdui-list-item-content">分类</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+          </div>
+          <div class="mdui-collapse-item-body mdui-list">
+            
+              <a href="/categories/github/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                github
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/blog/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                blog
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/categories/canvas/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                canvas
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/小程序/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                小程序
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>3</span>
+              </a>
+            
+              <a href="/categories/js/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                js
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/vscode/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                vscode
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/categories/redux/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                redux
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/categories/wx/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                wx
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+        <div class="mdui-collapse-item ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+            <i class="mdui-list-item-icon mdui-icon fa fa-tags mdui-text-center"></i>
+            <div class="mdui-list-item-content">标签</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+          </div>
+          <div class="mdui-collapse-item-body mdui-list">
+            
+              <a href="/tags/github/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                github
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/blog/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                blog
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/tags/canvas/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                canvas
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/小程序/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                小程序
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>3</span>
+              </a>
+            
+              <a href="/tags/node/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                node
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/js/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                js
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/vscode/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                vscode
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>2</span>
+              </a>
+            
+              <a href="/tags/redux/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                redux
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+              <a href="/tags/wx/" class="mdui-list-item mdui-ripple mdui-ripple-white" style="display: flex">
+                wx
+                <div style="flex-grow: 1;"></div>
+                <span class="theme-menu-badge new mdui-color-theme-accent" data-badge-caption>1</span>
+              </a>
+            
+          </div>
+        </div>
+      
+      <div class="mdui-collapse-item ">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe916;</i>
+          <div class="mdui-list-item-content">年份</div>
+          <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-list">
+          
+          
+            <a href="/archives/2019/" class="mdui-list-item mdui-ripple">
+              2019
+            </a>
+          
+            <a href="/archives/2018/" class="mdui-list-item mdui-ripple">
+              2018
+            </a>
+          
+        </div>
+      </div>
+    </ul>
+  </ul>
+  
+    <div class="mdui-divider"></div>
+    <ul class="mdui-list" mdui-collapse="{accordion: true}">
+      
+        
+          
+            <a href="/list" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">&#xe5ca;</i>
+              
+              
+              <div class="mdui-list-item-content">demo</div>
+            </a>
+        
+      
+        
+          
+            <a href="/about" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">about</div>
+            </a>
+        
+      
+    </ul>
+  
+</div>
+
+    <div class="theme-spacer"></div>
+    <!-- footer -->
+    <div class="theme-drawer__warpper__footer">
+  <div class="mdui-typo mdui-typo-caption-opacity">
+    Powered by <a href="http://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme - <a href="//github.com/Halyul/hexo-theme-mdui" target="_blank">Halyul/MDUI</a>
+    <br>
+    <span>
+      Copyright ©
+      <span year></span>
+      Weker
+    </span>
+    
+    
+      <br>
+      <span>
+        最后更新于: 4月 10, 2019
+      </span>
+    
+    
+  </div>
+</div>
+<script type="text/javascript">
+  var copyrightNow = new Date().getFullYear();
+  var textContent = document.querySelector('span[year]')
+  
+    copyrightSince = 2018;
+    if (copyrightSince === copyrightNow) {
+      textContent.textContent = copyrightNow
+    } else {
+      textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+  
+</script>
+
+  </div>
+</div>
+
+    <div id="top"></div>
+
+    <script src="/js/lightgallery.min.js"></script>
+
+    <div id="barba-wrapper">
+      <div class="barba-container"  data-namespace="post">
+        
+
+
+
+  <link rel="stylesheet" href="/css/prism/okaidia.min.css">
+
+
+  <link rel="stylesheet" href="/css/prism/line-number.min.css">
+
+
+<div class="theme-post">
+  <div class="theme-post__background mdui-color-theme"></div>
+  <div class="theme-post__header mdui-color-theme">
+    <div class="theme-post__header__title mdui-text-truncate">
+      canvas接红包游戏
+    </div>
+    <div class="theme-spacer"></div>
+    <div class="theme-post__header__actions mdui-valign">
+      <div>
+        <span>编写时间：</span>
+        <span style="float: right">12月 15, 2018</span>
+        
+        <br>
+          <span>最后修改时间：</span>
+          <span>4月 10, 2019</span>
+        
+      </div>
+      
+
+      
+  <div class="theme-post__share">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon" mdui-menu="{target: '#post-share-menu'}">
+      <i class="mdui-icon material-icons">&#xe80d;</i>
+    </button>
+
+    <ul class="mdui-menu" id="post-share-menu">
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://wekerSnail.github.io//2018/12/15/jjz/index.html" target="_blank" class="mdui-ripple">
+                分享到Facebook
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://plus.google.com/share?url=https://wekerSnail.github.io//2018/12/15/jjz/index.html" target="_blank" class="mdui-ripple">
+                分享到Google+
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://wekerSnail.github.io//2018/12/15/jjz/index.html&title=canvas接红包游戏" target="_blank" class="mdui-ripple">
+                分享到Linkedin
+            </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://twitter.com/intent/tweet?text=canvas接红包游戏&url=https://wekerSnail.github.io//2018/12/15/jjz/index.html&via=Weker" target="_blank" class="mdui-ripple">
+                分享到Twitter
+            </a>
+        </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+  <div class="theme-post__warpper
+    
+  ">
+    <div class="theme-post__warpper__container">
+      <article class="mdui-card theme-post__card mdui-hoverable">
+        <section class="theme-post__card__warning">
+          这篇文章最后修改于
+          <span id="content-warning"></span>
+          天之前。
+          本页内容可能已经过时！
+        </section>
+        
+        
+          <section class="mdui-card-media">
+            <img src="/images/random/3.png">
+          </section>
+        
+        <section class="mdui-typo theme-post__card__content">
+          <p>由于工作业务基本用不到canvas，所以之前对canvas也没有做多少了解，仅是知道canvas是html5中用于绘制图形使用，通过js可以绘制出任意的图形，也可以通过连续的绘制，来实现动画的效果。性能上要优于直接操作dom实现的动画，当然也比flash的动画性能要好。但是对于实际的用法并没有太多了解</p>
+<p>不过最近看canvas应用挺多，用来做一些简单的动画或者游戏还是比较实用的，于是就研究了一下，也写了一个简单的游戏来实践一下。也就是下面要讲到的接红包游戏</p>
+<p>接红包要实现的效果比较简单，红包从屏幕上部往下落，玩家操纵底部的人来接住落下的红包，接住就加分，接住炸弹则扣分，模型如下图<br><img src="http://wx2.sinaimg.cn/mw690/99acde33gy1fy9k84kx5zj206b08qwea.jpg" alt="接红包草图"></p>
+<p>从图上可以看出，这个游戏主要需要处理的就两个对象，一个红包对象，一个就是下面操作的接红包的人，所以我们需要编写的两个模型就是红包模型和人模型</p>
+<h1 id="drawImage"><a href="#drawImage" class="headerlink" title="drawImage()"></a>drawImage()</h1><p>说下面的具体实现之前,首先说一下主要用到的canvas api,这边的游戏图形基本用的是图片来显示的，所以就需要用到canvas中的绘制图片的api</p>
+<p>drawImage主要用三种用法</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token number">1</span><span class="token punctuation">.</span> context<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>img<span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//仅提供图片和绘制的起始位置，绘制出的图片大小由图片本身决定</span>
+
+<span class="token number">2</span><span class="token punctuation">.</span> context<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>img<span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>width<span class="token punctuation">,</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//提供图片，以及起始位置和显示的宽高</span>
+
+<span class="token number">3</span><span class="token punctuation">.</span> context<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>img<span class="token punctuation">,</span>sx<span class="token punctuation">,</span>sy<span class="token punctuation">,</span>swidth<span class="token punctuation">,</span>sheight<span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>width<span class="token punctuation">,</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这个是切图的用法，提供图片以及剪切的起始位置和宽高，以及绘制的起始位置和宽高</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>该游戏用到的都是切好的图片，所以理所当然用的也就是第二种drawImage的方式</p>
+<h1 id="主体部分"><a href="#主体部分" class="headerlink" title="主体部分"></a>主体部分</h1><p>这边使用一个Game类来对游戏做全局的管理</p>
+<p>Game类中需要初始化一些基本的参数，比如画布的初始化，游戏基本参数的初始化</p>
+<ul>
+<li>屏幕大小参数</li>
+<li>游戏状态</li>
+<li>红包的数据集合</li>
+<li>操作状态</li>
+<li>时间</li>
+<li>得分<br>…</li>
+</ul>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">this</span><span class="token punctuation">.</span>isEnd <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//游戏结束</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>touching <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//是否触摸财神</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>moneyList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//掉落集合</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>score <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>time <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//游戏时间</span>
+<span class="token operator">...</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="红包部分"><a href="#红包部分" class="headerlink" title="红包部分"></a>红包部分</h1><h3 id="红包初始化"><a href="#红包初始化" class="headerlink" title="红包初始化"></a>红包初始化</h3><p>首先要考虑的是单个红包需要的属性：</p>
+<ul>
+<li>红包的x轴起始位置</li>
+<li>红包的y轴起始位置</li>
+<li>红包的宽度</li>
+<li>红包的高度</li>
+<li>红包的类型</li>
+<li>红包的分值</li>
+<li>红包的状态 //正在下落，已被接住，没有接住</li>
+<li>红包的速度 //不同的红包下落的速度不相同</li>
+</ul>
+<p><em>根据这些我们就可以写出我们的红包类:</em></p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">var</span> money <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> ob<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>type <span class="token operator">=</span> ob<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//0正在掉落，1接住 ，2没接住</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>widths <span class="token operator">=</span> ob<span class="token punctuation">.</span>widths<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>heights <span class="token operator">=</span> ob<span class="token punctuation">.</span>heights<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token operator">=</span>ob<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>status<span class="token operator">=</span>ob<span class="token punctuation">.</span>status<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>speed<span class="token operator">=</span>ob<span class="token punctuation">.</span>speed<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>实际上红包就几种类型，所以我们不需要像上面那样每个参数都一一传入，我们可以编写一个红包的类型集合，然后传入一个<code>type</code>，来获取那些固定的初始参数，比如<code>宽度，高度，分值，速度，类型</code></li>
+</ul>
+<h3 id="红包绘制"><a href="#红包绘制" class="headerlink" title="红包绘制"></a>红包绘制</h3><p>参数初始化完成之后，就需要绘制出这个红包:<em>我们绘制的时候其实只需要绘制出正在下落的红包，接住和没接住错过的，都是看不到的，所以不需要绘制，所以这边就需要用到红包的状态</em></p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">money<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>draw <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//0代表正在下落的状态</span>
+            game<span class="token punctuation">.</span>ctx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>moneyEnum<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span>image<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>y<span class="token punctuation">,</span> moneyEnum<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span>widths<span class="token punctuation">,</span> moneyEnum<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span>heights<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="红包的接住操作"><a href="#红包的接住操作" class="headerlink" title="红包的接住操作"></a>红包的接住操作</h3><p>红包接没接住，其实就是看这个红包有没有和下面移动的小人有没有接触过，图形上来看，就是有没有重叠过</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">money<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>drop <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//速度叠加</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">+</span><span class="token operator">=</span> moneyEnum<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span>speed<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//每次下落的距离</span>
+        <span class="token keyword">var</span> top <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>y
+        <span class="token keyword">var</span> bottom <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>heights
+        <span class="token keyword">var</span> left <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>x
+        <span class="token keyword">var</span> right <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>widths
+        <span class="token keyword">var</span> caiY <span class="token operator">=</span> game<span class="token punctuation">.</span>phone<span class="token punctuation">.</span>h <span class="token operator">-</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>h
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> caiY <span class="token operator">&lt;=</span> bottom <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">&lt;=</span> left <span class="token operator">&amp;&amp;</span> left <span class="token operator">&lt;=</span> <span class="token punctuation">(</span><span class="token operator">+</span>game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">+</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">&lt;=</span> right <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token operator">+</span>game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">+</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w<span class="token punctuation">)</span> <span class="token operator">>=</span> right<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            game<span class="token punctuation">.</span>score <span class="token operator">+</span><span class="token operator">=</span> moneyEnum<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//记录总分数</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">>=</span> game<span class="token punctuation">.</span>phone<span class="token punctuation">.</span>h<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这边写的比较随意，大致的意思就是比较红包的底部是不是低于小人，并且左边在小人两边之间，或者右边在小人两边之间，满足这个条件也就是他们有接触</p>
+<p>当然满足这些的同时，红包还得是还在屏幕内，出了屏幕外当然不行，所以下面的判断就是把出屏幕的设置为没接住</p>
+<h1 id="小人部分"><a href="#小人部分" class="headerlink" title="小人部分"></a>小人部分</h1><p>和红包部分基本类似，首先就是声明基本的参数类型</p>
+<p>小人主要需要的参数</p>
+<ul>
+<li>x轴起始位置</li>
+<li>y轴起始位置</li>
+<li>小人宽度</li>
+<li>小人高度</li>
+</ul>
+<p>小人只有左右移动的功能，所以四个参数基本够用了</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">var</span> body<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>w<span class="token operator">=</span>xx<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//宽度</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>h<span class="token operator">=</span>xx<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//高度</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>x<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//如果要居中就是手机屏幕宽度一半减去小人宽度一半</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>y<span class="token operator">=</span>game<span class="token punctuation">.</span>phone<span class="token punctuation">.</span>h<span class="token operator">-</span><span class="token keyword">this</span><span class="token punctuation">.</span>h <span class="token comment" spellcheck="true">//居于底部，所以y轴位置固定</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="小人移动"><a href="#小人移动" class="headerlink" title="小人移动"></a>小人移动</h1><p>小人移动需要修改的仅仅是小人的x轴参数</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">   body<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>move <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        game<span class="token punctuation">.</span>ctx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>game<span class="token punctuation">.</span>cai<span class="token punctuation">,</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>game<span class="token punctuation">.</span>phone<span class="token punctuation">.</span>h <span class="token operator">-</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>h<span class="token punctuation">)</span><span class="token punctuation">,</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w<span class="token punctuation">,</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h1 id="整合"><a href="#整合" class="headerlink" title="整合"></a>整合</h1><p>现在基本的模块都有了，需要的就是把他们整合起来，形成游戏</p>
+<p>首先就是让红包落下来</p>
+<h2 id="红包下落"><a href="#红包下落" class="headerlink" title="红包下落"></a>红包下落</h2><p>随机生成红包对象，加入红包的集合中</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">    Game<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>addMoney <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//掉钱</span>
+        <span class="token keyword">var</span> random <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>random <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> game<span class="token punctuation">.</span>five_num_left <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>game<span class="token punctuation">.</span>isEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>moneyList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">money</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"five"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>random <span class="token operator">==</span> <span class="token number">2</span> <span class="token operator">&amp;&amp;</span> game<span class="token punctuation">.</span>pig_num_left <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>game<span class="token punctuation">.</span>isEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>moneyList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">money</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"pig"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>random <span class="token operator">==</span> <span class="token number">3</span> <span class="token operator">&amp;&amp;</span> game<span class="token punctuation">.</span>boom_num_left <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>game<span class="token punctuation">.</span>isEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>moneyList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">money</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"boom"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>random <span class="token operator">==</span> <span class="token number">5</span> <span class="token operator">&amp;&amp;</span> game<span class="token punctuation">.</span>cloud_num_left <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>game<span class="token punctuation">.</span>isEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>moneyList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">money</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"cloud"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>整体游戏的绘制<br>由game主体去控制所有部分的绘制</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">    Game<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>draw <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//首先清屏</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>moneyList<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            item<span class="token punctuation">.</span><span class="token function">drop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//调用红包各自的下落绘制</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//这边可以不用参考，因为编写的时候我并没有写小人类，而是直接写入了game类中，所以这边直接调用的小人的移动绘制</span>
+        <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.score'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">"得分:"</span> <span class="token operator">+</span> game<span class="token punctuation">.</span>score<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//得分更新</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>剩下就是移动的事件编写了，目前移动的方法都已经写好了，但是小人移动的事件还没有</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">      document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchstart'</span><span class="token punctuation">,</span> touch<span class="token punctuation">,</span> <span class="token punctuation">{</span>passive<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//操作事件总共三个事件，开始触摸，移动，结束触摸</span>
+        document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchmove'</span><span class="token punctuation">,</span> touch<span class="token punctuation">,</span> <span class="token punctuation">{</span>passive<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchend'</span><span class="token punctuation">,</span> touch<span class="token punctuation">,</span> <span class="token punctuation">{</span>passive<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> that <span class="token operator">=</span> <span class="token keyword">this</span>
+
+        <span class="token keyword">function</span> <span class="token function">touch</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//点击</span>
+            <span class="token keyword">var</span> event <span class="token operator">=</span> event <span class="token operator">||</span> window<span class="token punctuation">.</span>event<span class="token punctuation">;</span>
+            event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">switch</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">case</span> <span class="token string">"touchmove"</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//移动操作的前提就是正在操作状态，然后把移动的x值付给小人，为了让手指居中，我们可以减去小人宽度一半</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>that<span class="token punctuation">.</span>touching<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX <span class="token operator">-</span> that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">0</span>
+                        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX <span class="token operator">>=</span>that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w <span class="token operator">/</span> <span class="token number">2</span>  <span class="token operator">&amp;&amp;</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX <span class="token operator">&lt;=</span>that<span class="token punctuation">.</span>phone<span class="token punctuation">.</span>w<span class="token operator">-</span>that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">=</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX <span class="token operator">-</span> that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w <span class="token operator">/</span> <span class="token number">2</span>
+                        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                            that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">=</span> that<span class="token punctuation">.</span>phone<span class="token punctuation">.</span>w <span class="token operator">-</span> that<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token keyword">case</span> <span class="token string">"touchstart"</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//开始触摸时，判断是否触摸的是小人的部分，不是小人就不处理，是小人就设置为正在操作状态</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX <span class="token operator">></span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">&amp;&amp;</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX <span class="token operator">&lt;</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>x <span class="token operator">+</span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>w <span class="token operator">&amp;&amp;</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientY <span class="token operator">></span> game<span class="token punctuation">.</span>rect<span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        that<span class="token punctuation">.</span>touching <span class="token operator">=</span> <span class="token boolean">true</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token keyword">case</span> <span class="token string">"touchend"</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//结束触摸状态</span>
+                    that<span class="token punctuation">.</span>touching <span class="token operator">=</span> <span class="token boolean">false</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在就剩让游戏开始了</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">    Game<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>start <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> that <span class="token operator">=</span> <span class="token keyword">this</span>
+        <span class="token keyword">var</span> addInterval <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//首先开始落红包，游戏没结束就持续的下落</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>that<span class="token punctuation">.</span>isEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                that<span class="token punctuation">.</span><span class="token function">addMoney</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>that<span class="token punctuation">.</span>phone<span class="token punctuation">.</span>w <span class="token operator">-</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//50是估计值，此处应取红包最大宽度，防止落出屏幕</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token function">clearInterval</span><span class="token punctuation">(</span>addInterval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> animate <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>now<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//调用主体的绘制部分</span>
+            that<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            that<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>that<span class="token punctuation">.</span>isEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">requestNextAnimationFrame</span><span class="token punctuation">(</span>animate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">var</span> timedCount <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//游戏倒计时以及状态更新</span>
+            <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".time_out"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">"剩余时间:"</span> <span class="token operator">+</span> that<span class="token punctuation">.</span>time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>that<span class="token punctuation">.</span>time <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">clearTimeout</span><span class="token punctuation">(</span>that<span class="token punctuation">.</span>clock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                that<span class="token punctuation">.</span>isEnd <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token function">change</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                that<span class="token punctuation">.</span>time <span class="token operator">=</span> that<span class="token punctuation">.</span>time <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                that<span class="token punctuation">.</span>clock <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>timedCount<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">timedCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        window<span class="token punctuation">.</span><span class="token function">requestNextAnimationFrame</span><span class="token punctuation">(</span>animate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>到这边，整个游戏的编写就基本上结束了,接下来只需要在需要的页面实例化一下<code>Game</code>就可以了<br>最后的效果<br><img src="http://wx1.sinaimg.cn/small/99acde33gy1fy9o371nocj208l0f5mxy.jpg" alt="游戏效果界面"></p>
+
+        </section>
+
+        
+          <section class="theme-post__card__license mdui-typo">
+            <span>
+              本文许可协议：
+              
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
+              
+            </span>
+            <br>
+            <span>本文永久链接：<a href="https://wekerSnail.github.io/2018/12/15/jjz/">https://wekerSnail.github.io/2018/12/15/jjz/</a></span>
+            
+              <br>
+              <span>本文Markdown：<a href="https://wekerSnail.github.io/2018/12/15/jjz/jjz.md">https://wekerSnail.github.io/2018/12/15/jjz/jjz.md</a></span>
+            
+          </section>
+        
+
+        
+          <section class="mdui-card-actions theme-post__card__actions">
+            
+              <button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-ripple  mdui-color-red" mdui-tooltip="{content: '打赏', position: 'right'}" mdui-dialog="{target: '#donateDialog'}">
+                <i class="mdui-icon fa fa-beer"></i>
+              </button>
+            
+            <div class="theme-spacer"></div>
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon material-icons">&#xe149;</i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/categories/canvas/">
+                    <span>canvas</span>
+                  </a>
+                
+              </div>
+            
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon fa fa-tags"></i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/tags/canvas/">
+                    <span>canvas</span>
+                  </a>
+                
+              </div>
+            
+          </section>
+        
+
+        
+          
+            <script type="text/javascript">
+              themeRuntime.commentRest.function = function (newIdentifier, newUrl, newTitle) {
+                return
+              }
+            </script>
+          
+        
+      </article>
+      
+        <div class="mdui-color-theme theme-post__toc">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#drawImage" data-href="#drawImage"><span class="toc-number"></span> <span class="toc-text">1. drawImage()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E3B;&#x4F53;&#x90E8;&#x5206;" data-href="#&#x4E3B;&#x4F53;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">2. &#x4E3B;&#x4F53;&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x90E8;&#x5206;" data-href="#&#x7EA2;&#x5305;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">3. &#x7EA2;&#x5305;&#x90E8;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x521D;&#x59CB;&#x5316;" data-href="#&#x7EA2;&#x5305;&#x521D;&#x59CB;&#x5316;"><span class="toc-number"></span> <span class="toc-text">3.0.1. &#x7EA2;&#x5305;&#x521D;&#x59CB;&#x5316;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x7ED8;&#x5236;" data-href="#&#x7EA2;&#x5305;&#x7ED8;&#x5236;"><span class="toc-number"></span> <span class="toc-text">3.0.2. &#x7EA2;&#x5305;&#x7ED8;&#x5236;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x7684;&#x63A5;&#x4F4F;&#x64CD;&#x4F5C;" data-href="#&#x7EA2;&#x5305;&#x7684;&#x63A5;&#x4F4F;&#x64CD;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">3.0.3. &#x7EA2;&#x5305;&#x7684;&#x63A5;&#x4F4F;&#x64CD;&#x4F5C;</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5C0F;&#x4EBA;&#x90E8;&#x5206;" data-href="#&#x5C0F;&#x4EBA;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">4. &#x5C0F;&#x4EBA;&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5C0F;&#x4EBA;&#x79FB;&#x52A8;" data-href="#&#x5C0F;&#x4EBA;&#x79FB;&#x52A8;"><span class="toc-number"></span> <span class="toc-text">5. &#x5C0F;&#x4EBA;&#x79FB;&#x52A8;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6574;&#x5408;" data-href="#&#x6574;&#x5408;"><span class="toc-number"></span> <span class="toc-text">6. &#x6574;&#x5408;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x4E0B;&#x843D;" data-href="#&#x7EA2;&#x5305;&#x4E0B;&#x843D;"><span class="toc-number"></span> <span class="toc-text">6.1. &#x7EA2;&#x5305;&#x4E0B;&#x843D;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7ED3;&#x675F;" data-href="#&#x7ED3;&#x675F;"><span class="toc-number"></span> <span class="toc-text">7. &#x7ED3;&#x675F;</span></a></li>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="theme-spacer"></div>
+
+  
+    <div class="mdui-color-theme theme-post__toc-fab">
+  <button class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-fab-fixed mdui-hidden-md-up" mdui-menu="{target: '#toc-fab-menu', fixed: true}" id="toc-fab">
+    <i class="mdui-icon material-icons">&#xe242;</i>
+  </button>
+  <ul class="mdui-menu mdui-typo theme-post__toc-fab__menu" id="toc-fab-menu" style="padding: 8px;max-height: 80%">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#drawImage" data-href="#drawImage"><span class="toc-number"></span> <span class="toc-text">1. drawImage()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E3B;&#x4F53;&#x90E8;&#x5206;" data-href="#&#x4E3B;&#x4F53;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">2. &#x4E3B;&#x4F53;&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x90E8;&#x5206;" data-href="#&#x7EA2;&#x5305;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">3. &#x7EA2;&#x5305;&#x90E8;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x521D;&#x59CB;&#x5316;" data-href="#&#x7EA2;&#x5305;&#x521D;&#x59CB;&#x5316;"><span class="toc-number"></span> <span class="toc-text">3.0.1. &#x7EA2;&#x5305;&#x521D;&#x59CB;&#x5316;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x7ED8;&#x5236;" data-href="#&#x7EA2;&#x5305;&#x7ED8;&#x5236;"><span class="toc-number"></span> <span class="toc-text">3.0.2. &#x7EA2;&#x5305;&#x7ED8;&#x5236;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x7684;&#x63A5;&#x4F4F;&#x64CD;&#x4F5C;" data-href="#&#x7EA2;&#x5305;&#x7684;&#x63A5;&#x4F4F;&#x64CD;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">3.0.3. &#x7EA2;&#x5305;&#x7684;&#x63A5;&#x4F4F;&#x64CD;&#x4F5C;</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5C0F;&#x4EBA;&#x90E8;&#x5206;" data-href="#&#x5C0F;&#x4EBA;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">4. &#x5C0F;&#x4EBA;&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5C0F;&#x4EBA;&#x79FB;&#x52A8;" data-href="#&#x5C0F;&#x4EBA;&#x79FB;&#x52A8;"><span class="toc-number"></span> <span class="toc-text">5. &#x5C0F;&#x4EBA;&#x79FB;&#x52A8;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6574;&#x5408;" data-href="#&#x6574;&#x5408;"><span class="toc-number"></span> <span class="toc-text">6. &#x6574;&#x5408;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EA2;&#x5305;&#x4E0B;&#x843D;" data-href="#&#x7EA2;&#x5305;&#x4E0B;&#x843D;"><span class="toc-number"></span> <span class="toc-text">6.1. &#x7EA2;&#x5305;&#x4E0B;&#x843D;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7ED3;&#x675F;" data-href="#&#x7ED3;&#x675F;"><span class="toc-number"></span> <span class="toc-text">7. &#x7ED3;&#x675F;</span></a></li>
+  </ul>
+</div>
+
+  
+
+  
+    <div class="theme-post__pagination mdui-color-theme">
+  
+    <div class="theme-post__pagination__prev mdui-ripple mdui-valign">
+      <a href="/2018/12/18/wepy-subpackage/" class="theme-post__pagination__prev__content mdui-text-left">
+        <div>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cb;</i>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">新的文章</span>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          wepy分包加载问题
+        </div>
+      </a>
+    </div>
+  
+
+  
+    <div class="theme-post__pagination__next mdui-ripple mdui-valign">
+      <a href="/2018/11/28/wepy-mpvue/" class="theme-post__pagination__next__content mdui-text-right">
+        <div>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">旧的文章</span>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          wepy-mpvue对比
+        </div>
+      </a>
+    </div>
+    
+</div>
+
+  
+
+  
+    <div class="mdui-dialog" id="donateDialog">
+      <div class="mdui-dialog-title">打赏</div>
+      <div class="mdui-dialog-content">
+        <div class="mdui-list">
+          
+            <a href="/img/avatar.png" title="wechat" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-wechat mdui-text-center"></i>&emsp;
+              
+              
+              
+              wechat
+            </a>
+          
+            <a href="https://paypal.com" title="paypay" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-paypal mdui-text-center"></i>&emsp;
+              
+              
+              
+              paypay
+            </a>
+          
+        </div>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple mdui-ripple" mdui-dialog-close>不要</button>
+      </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+  themeRuntime.scriptsMap.post = [];
+  if (document.querySelector('.theme-post__toc-fab__menu > ol') !== null && document.querySelector('.theme-post__toc > ol') !== null) {
+    tocHighlight()
+    function tocHighlight() {
+      var timer;
+      function doWork() {
+        listens.forEach(function(value, index) {
+          value[1]();
+          value[0].classList.remove("mdui-list-item-active");
+        })
+        let actionToc = (listens[listens.reduce(function(r, v, index) {
+          if (v[2] == true) {
+            return index;
+          } else return r;
+        }, undefined)] || [])[0] || listens[0][0];
+        actionToc.classList.add("mdui-list-item-active");
+        if(actionToc.getClientRects().length == 0)return;
+        showToc(actionToc);
+      }
+      function showToc(toc) {
+        let offsetTop = toc.getClientRects()[0].top - cardToc.getClientRects()[0].top - 40;
+        let offsetBottom = toc.getClientRects()[0].bottom - cardToc.getClientRects()[0].bottom + 40;
+        let offset = 0;
+        if (offsetTop < 0) offset = offsetTop;
+        if (offsetBottom > 0) offset = offsetBottom;
+        var targetTop = Math.max(0, Math.min(cardToc.scrollTop + offset, toclist.offsetHeight - cardToc.offsetHeight));
+        clearInterval(timer);
+        timer = setInterval(function() {
+          var now = cardToc.scrollTop;
+          var speed = (targetTop - now) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (Math.abs(now - targetTop) < 1) {
+            clearInterval(timer);
+          }
+          cardToc.scrollTop = now + speed;
+        }, 30);
+      }
+      var listens = [];
+      var cardToc = document.querySelector('.theme-post__toc');
+      var links = cardToc.querySelectorAll(".theme-post__toc__content__link");
+      var toclist = document.querySelector(".theme-post__toc > ol");
+      Array.prototype.forEach.call(links, function(value, index) {
+        var id = (value.getAttribute("href") || "#").slice(1);
+        var element = document.getElementById(id);
+        listens.push([value, function() {
+          var readed = false;
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+          if (element.offsetTop <= scrollTop + element.clientHeight + 64) {
+            readed = true;
+          } else {
+            readed = false;
+          }
+          listens[index][2] = readed;
+        }, false])
+      })
+      doWork();
+      window.addEventListener("scroll", doWork)
+      var listener = {
+        function:  doWork,
+        event: 'scroll',
+        el: window,
+        removed: false
+      }
+      themeRuntime.scriptsMap.post.push(listener)
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var postLastModifiedDate = 1554885241339
+    var today = (new Date()).getTime()
+    var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
+    if (difference >= 100) {
+      document.querySelector('.theme-post__card__warning').style.display = 'block'
+      document.querySelector('#content-warning').textContent = difference
+    }
+  })();
+</script>
+
+<script type="text/javascript">
+  var images = document.querySelectorAll('.theme-post__card__content img')
+  for (i = 0; i < images.length; i++) {
+    //console.log('image added', i)
+    images[i].addEventListener("click", openLG);
+    var listener = {
+      function:  openLG,
+      event: 'click',
+      el: images[i],
+      removed: false
+    }
+    themeRuntime.scriptsMap.post.push(listener)
+  }
+  function openLG() {
+    var img_src = this.getAttribute('src');
+    var img_alt = this.getAttribute('alt');
+    lightGallery(this, {
+      dynamic: true,
+      counter: false,
+      dynamicEl: [{
+        "src": img_src,
+        'subHtml': "<span author>Weker</span><div descr>" + img_alt + "</div>"
+      }],
+    });
+  }
+</script>
+
+
+
+
+      </div>
+    </div>
+  </main>
+
+  <div id="outdated" style="z-index: 9999;">
+    <h6>你的浏览器已经过气辣！</h6>
+    <p>赶紧升级浏览器来访问本站吧！<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">现在就去</a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="关闭">&times;</a></p>
+  </div>
+  <!-- import js -->
+
+
+  <script src="/js/outdatedbrowser.min.js"></script>
+
+
+
+  
+    <script src="/js/js.pure.min.js"></script>
+  
+
+
+<!-- theme js -->
+<script type="text/javascript">
+  (function() {
+    var appbarTopFlag = false;
+    var appbarEl = document.querySelector('.theme-appbar');
+    function appbarShadow() {
+      var bodyScrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      if (bodyScrolled > 0 && !appbarTopFlag) {
+        appbarEl.classList.add('theme-appbar--shadow');
+        appbarTopFlag = true;
+      } else if (bodyScrolled === 0 && appbarTopFlag) {
+        appbarEl.classList.remove('theme-appbar--shadow');
+        appbarTopFlag = false;
+      }
+    }
+    appbarShadow()
+    window.addEventListener('scroll', appbarShadow);
+  })();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  document.querySelector('body').classList.add('theme-loaded')
+</script>
+
+
+
+</body>
+</html>
