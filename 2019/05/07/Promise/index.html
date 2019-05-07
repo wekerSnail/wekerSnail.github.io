@@ -33,7 +33,7 @@
         -->
 
   <meta charset="UTF-8">
-  <title>wepy-mpvue对比 - Hexo</title>
+  <title>Promise的基础使用 - Hexo</title>
 
   <!-- Favicons -->
   <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
@@ -48,9 +48,9 @@
 
   <meta name="author" content="Weker">
   
-      <meta name="description" itemprop="description" content="mpvue和wepy两个小程序开发框架的区别对比">
+      <meta name="description" itemprop="description" content="Redux 是 JavaScript 状态容器，提供可预测化的状态管理。可以让你构建一致化的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。">
   
-  <meta name="keywords" content="blog, hexo, mdui,小程序">
+  <meta name="keywords" content="blog, hexo, mdui,js">
 
   <!--iOS -->
   <meta name="apple-mobile-web-app-title" content="Hexo">
@@ -65,14 +65,14 @@
   <!-- The Open Graph protocol -->
   <meta property="og:url" content="https://wekerSnail.github.io">
   <meta property="og:type" content="blog">
-  <meta property="og:title" content="wepy-mpvue对比 - Hexo | Hexo">
+  <meta property="og:title" content="Promise的基础使用 - Hexo | Hexo">
   <meta property="og:image" content="/images/favicon.png">
   
-    <meta property="og:description" content="mpvue和wepy两个小程序开发框架的区别对比">
+    <meta property="og:description" content="Redux 是 JavaScript 状态容器，提供可预测化的状态管理。可以让你构建一致化的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。">
   
 
   
-    <meta property="og:article:tag" content="小程序">
+    <meta property="og:article:tag" content="js">
   
 
   
@@ -530,17 +530,13 @@
   <div class="theme-post__background mdui-color-theme"></div>
   <div class="theme-post__header mdui-color-theme">
     <div class="theme-post__header__title mdui-text-truncate">
-      wepy-mpvue对比
+      Promise的基础使用
     </div>
     <div class="theme-spacer"></div>
     <div class="theme-post__header__actions mdui-valign">
       <div>
         <span>编写时间：</span>
-        <span style="float: right">11月 28, 2018</span>
-        
-        <br>
-          <span>最后修改时间：</span>
-          <span>4月 10, 2019</span>
+        <span style="float: right">5月 07, 2019</span>
         
       </div>
       
@@ -555,7 +551,7 @@
 
       
         <li class="mdui-menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://wekerSnail.github.io//2018/11/28/wepy-mpvue/index.html" target="_blank" class="mdui-ripple">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://wekerSnail.github.io//2019/05/07/Promise/index.html" target="_blank" class="mdui-ripple">
                 分享到Facebook
             </a>
         </li>
@@ -563,7 +559,7 @@
 
       
         <li class="mdui-menu-item">
-            <a href="https://plus.google.com/share?url=https://wekerSnail.github.io//2018/11/28/wepy-mpvue/index.html" target="_blank" class="mdui-ripple">
+            <a href="https://plus.google.com/share?url=https://wekerSnail.github.io//2019/05/07/Promise/index.html" target="_blank" class="mdui-ripple">
                 分享到Google+
             </a>
         </li>
@@ -571,7 +567,7 @@
 
       
         <li class="mdui-menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://wekerSnail.github.io//2018/11/28/wepy-mpvue/index.html&title=wepy-mpvue对比" target="_blank" class="mdui-ripple">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://wekerSnail.github.io//2019/05/07/Promise/index.html&title=Promise的基础使用" target="_blank" class="mdui-ripple">
                 分享到Linkedin
             </a>
         </li>
@@ -583,7 +579,7 @@
 
       
         <li class="mdui-menu-item">
-            <a href="https://twitter.com/intent/tweet?text=wepy-mpvue对比&url=https://wekerSnail.github.io//2018/11/28/wepy-mpvue/index.html&via=Weker" target="_blank" class="mdui-ripple">
+            <a href="https://twitter.com/intent/tweet?text=Promise的基础使用&url=https://wekerSnail.github.io//2019/05/07/Promise/index.html&via=Weker" target="_blank" class="mdui-ripple">
                 分享到Twitter
             </a>
         </li>
@@ -611,138 +607,98 @@
         
         
           <section class="mdui-card-media">
-            <img src="/images/random/18.png">
+            <img src="/images/random/14.png">
           </section>
         
         <section class="mdui-typo theme-post__card__content">
-          <h1 id="wepy对比mpvue"><a href="#wepy对比mpvue" class="headerlink" title="wepy对比mpvue"></a>wepy对比mpvue</h1><h2 id="小程序配置部分"><a href="#小程序配置部分" class="headerlink" title="小程序配置部分"></a>小程序配置部分</h2><p>wepy可以配置小程序开发者工具的设置项 ，mpvue没有相关配置</p>
-<pre class="line-numbers language-json" mdui-tooltip="{content: 'json'}"><code class="language-json"><span class="token punctuation">{</span>
-//project.config.json文件
-<span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"project description"</span><span class="token punctuation">,</span>
-  <span class="token property">"setting"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"urlCheck"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"es6"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    <span class="token property">"postcss"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    <span class="token property">"minified"</span><span class="token operator">:</span> <span class="token boolean">false</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token property">"compileType"</span><span class="token operator">:</span> <span class="token string">"miniprogram"</span><span class="token punctuation">,</span>
-  <span class="token property">"appid"</span><span class="token operator">:</span> <span class="token string">"touristappid"</span><span class="token punctuation">,</span>
-  <span class="token property">"projectname"</span><span class="token operator">:</span> <span class="token string">"Project name"</span><span class="token punctuation">,</span>
-  <span class="token property">"miniprogramRoot"</span><span class="token operator">:</span> <span class="token string">"./dist"</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>wepy全局配置和页面配置都集成进了页面单文件内,mpvue需要单独的main.json配置文件</p>
-<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Index</span> <span class="token keyword">extends</span> <span class="token class-name">wepy<span class="token punctuation">.</span>page</span> <span class="token punctuation">{</span>
-    config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
-      navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">'#fff'</span><span class="token punctuation">,</span>
-      navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'WeChat'</span><span class="token punctuation">,</span>
-      navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'black'</span>
-            <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>wepy和mpvue都支持组件化，写法和使用和vue的写法基本一致，区别在于</p>
-<p>mpvue的使用和vue完全一样，wepy稍有不同，wepy同页面使用相同组件是，需要不同的声明</p>
-<p><strong>mpvue不支持slot组件，wepy支持</strong></p>
-<pre class="line-numbers language-html" mdui-tooltip="{content: 'html'}"><code class="language-html">// index.wpy
-//使用两个Counter组件时，components中需要区别声明再来使用，mpvue是声明一次对此重复使用
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>panel</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>panel</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>counter1</span> <span class="token attr-name">:num</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myNum<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>counter1</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>counter2</span> <span class="token attr-name">:num.sync</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>syncNum<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>counter2</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span> <span class="token attr-name">:item</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>items<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
-import wepy from 'wepy';
-//引入List、Panel和Counter组件
-import List from '../components/list';
-import Panel from '../components/panel';
-import Counter from '../components/counter';
-
-export default class Index extends wepy.page {
-    //页面配置
-    config = {
-        "navigationBarTitleText": "test"
-    };
-
-    //声明页面中将要使用到的组件
-    components = {
-        panel: Panel,
-        counter1: Counter,
-        counter2: Counter,
-        list: List
-    };
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">mpvue一个页面由三个文件构成
-main<span class="token punctuation">.</span>json<span class="token punctuation">,</span>index<span class="token punctuation">.</span>vue<span class="token punctuation">,</span>mian<span class="token punctuation">.</span>js
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">wepy一个单文件 xxx<span class="token punctuation">.</span>wpy
-配置也写在js部分，参看上文
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="对于原生api的影响"><a href="#对于原生api的影响" class="headerlink" title="对于原生api的影响"></a>对于原生api的影响</h2><ul>
-<li><p>mpvue对于原生api没有任何影响，直接和原生的使用方式一样</p>
-</li>
-<li><p>wepy对于原生api做了优化处理，通过配置，可以使用promise封装的api，对并发处理更优,wepy中的<code>wx.xx</code>接口都改为<code>wepy.xx</code></p>
-<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">import</span> wepy <span class="token keyword">from</span> <span class="token string">'wepy'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">async</span> <span class="token function">onLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//使用promise方式的api，支持es7的异步管理</span>
-    <span class="token keyword">await</span> wepy<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>userInfo <span class="token operator">=</span> <span class="token keyword">await</span> wepy<span class="token punctuation">.</span><span class="token function">getUserInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//promise方式的请求</span>
-wepy<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'xxxx'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="wxml部分"><a href="#wxml部分" class="headerlink" title="wxml部分"></a>wxml部分</h2><ul>
-<li>mpvue支持wxml的所有标签，但是数据绑定方式是按照vue方式来，事件绑定方式也是按照vue方式</li>
-<li>wepy同样支持所有的wxml标签，数据绑定方式和原生一样，事件绑定和原生略有不同，<a href="https://tencent.github.io/wepy/document.html#/?id=%E7%BB%84%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">参看文档</a></li>
-</ul>
-<h2 id="wxss部分"><a href="#wxss部分" class="headerlink" title="wxss部分"></a>wxss部分</h2><p>两者基本相同，都支持预处理器</p>
-<h2 id="js部分"><a href="#js部分" class="headerlink" title="js部分"></a>js部分</h2><ul>
-<li><p>mpvue基本和vue相同，生命周期兼容vue和小程序两者生命周期</p>
-</li>
-<li><p>wepy写法类vue，结构类react，生命周期遵从小程序规范</p>
-<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-    <span class="token keyword">import</span> wepy <span class="token keyword">from</span> <span class="token string">'wepy'</span>
-    <span class="token keyword">import</span> Child <span class="token keyword">from</span> <span class="token string">'../components/child'</span>
-
-    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Index</span> <span class="token keyword">extends</span> <span class="token class-name">wepy<span class="token punctuation">.</span>page</span> <span class="token punctuation">{</span>
-        components <span class="token operator">=</span> <span class="token punctuation">{</span>
-            child<span class="token punctuation">:</span> Child
-        <span class="token punctuation">}</span>
-
-        methods <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//此处和vue的methods不同，此处的methods仅是dom事件，自定义事件直接写在class下面</span>
-            parentFn <span class="token punctuation">(</span>num<span class="token punctuation">,</span> evt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'parent received emit event, number is: '</span> <span class="token operator">+</span> num<span class="token punctuation">)</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><p>两者都是数据动态绑定，直接赋值即可<code>this.title = &#39;this is title&#39;;</code></p>
-<p>不同之处：wepy在异步的数据跟新时需要手动刷新一下this.$apply()</p>
-<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>title <span class="token operator">=</span> <span class="token string">'this is title'</span><span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$apply</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h2><ul>
-<li>mpvue使用vuex</li>
-<li>wepy使用redux(wepy-redux)</li>
-</ul>
+          <p><code>Promise</code> 是异步编程的一种解决方案：<br>从语法上讲，<code>promise</code>是一个对象，从它可以获取异步操作的消息；从本意上讲，它是承诺，承诺它过一段时间会给你一个结果。<br><code>promise</code>有三种状态：<code>pending</code>(等待态)，<code>fulfiled</code>(成功态)，<code>rejected</code>(失败态)；状态一旦改变，就不会再变。创造<code>promise</code>实例后，它会立即执行。</p>
+<p><code>promise</code>的使用可以解决异步的回调地狱问题，不在需要层层的回调嵌套，让代码变得复杂难读。</p>
 <blockquote>
-<p>待完善…</p>
+<p>Promise是一个构造函数，自己身上有all、reject、resolve这几个眼熟的方法，原型上有then、catch等同样很眼熟的方法。</p>
+</blockquote>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">let</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//异步操作</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行完成'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'我是成功！！'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以上就是创建了一个简单的<code>Promise</code>函数，他接受一个回调函数，并且传入两个参数<code>resolve</code>和<code>reject</code>。这两个参数是两个回调函数，<code>resolve</code>代表成功会后的回调，<code>reject</code>代表失败后的回调。<code>Promise</code>创建完就会立即执行，例如以上代码运行完就会输出 <em>执行完成</em></p>
+<h2 id="then的用法"><a href="#then的用法" class="headerlink" title="then的用法"></a>then的用法</h2><p><code>then</code>方法可以接受两个回调函数作为参数，一个是<code>resolve</code>状态的回调函数，一个是<code>reject</code>状态的回调函数。</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">p<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>success<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>success<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">(</span>fail<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fail<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>两个函数的传入值都是接收的<code>Promise</code>中的传出值。</p>
+<h4 id="then的链式调用"><a href="#then的链式调用" class="headerlink" title="then的链式调用"></a>then的链式调用</h4><p><code>then</code>方法返回的是一个新的<code>promise</code>,所以<code>then</code>可以链式调用</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js">p<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">2</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行以上代码会依次数出，<em>1,2,3</em>,其中第一个<code>then</code>中的传入值接受自<code>Promise</code>的传出值，而后面一个<code>then</code>则接受收上一个的return值，第三个则无返回值,所以后面两个的<code>data</code>值为<code>2</code>和<code>undefined</code></p>
+<h2 id="reject的用法"><a href="#reject的用法" class="headerlink" title="reject的用法"></a>reject的用法</h2><p><code>reject</code>是<code>rejected</code>状态的回调函数，调用的是<code>then</code>中第二个参数的回调函数。</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">let</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//异步操作</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行完成'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">'我是失败！！'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="catch的用法"><a href="#catch的用法" class="headerlink" title="catch的用法"></a>catch的用法</h2><p><code>catch</code>是用来接受<code>reject</code>的回调函数的，和<code>then</code>的第二个回调函数是一样的效果，同时<code>catch</code>还可以捕获<code>Promise</code>中的代码报错，所以一般<code>then</code>都是用来接受成功回调，而在最后统一使用<code>catch</code>来处理错误或者异常。</p>
+<h2 id="all的用法"><a href="#all的用法" class="headerlink" title="all的用法"></a>all的用法</h2><p><code>Promise.all</code>方法用于将多个 <code>Promise</code> 实例，包装成一个新的 <code>Promise</code> 实例。<br><code>Promise</code>的<code>all</code>方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后才执行回调。</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">let</span> Promise1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">let</span> Promise2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">let</span> Promise3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">let</span> p <span class="token operator">=</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">[</span>Promise1<span class="token punctuation">,</span> Promise2<span class="token punctuation">,</span> Promise3<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+p<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行上面代码，两秒之后输出[1,2,3],<code>all</code>方法会等所有<code>Promise</code>都成功之后在运行回调，同时接受的传入参数是以上所有<code>Promise</code>的返回值的数组，顺序和传入<code>Promise</code>一致，如果中间有一个<code>promise</code>失败，则<code>all</code>方法就会运行失败的回调。</p>
+<h2 id="race的用法"><a href="#race的用法" class="headerlink" title="race的用法"></a>race的用法</h2><p><code>race</code>和<code>all</code>方法类似，也是处理多个<code>Promise</code>的，但是作用是相反的，<code>race</code>同样接受一个<code>promise</code>的数组，但是<code>race</code>的回调是第一个<code>Promise</code>状态改变就运行，而不会等所有<code>Promise</code>状态都改变。接受的参数则是该状态改变的<code>promise</code>传出的参数值。</p>
+<h2 id="async和await的使用"><a href="#async和await的使用" class="headerlink" title="async和await的使用"></a>async和await的使用</h2><p><code>async</code>可以将异步函数转化成同步函数来执行，结合<code>Promise</code>可以实现异步的同步并发控制</p>
+<pre class="line-numbers language-js" mdui-tooltip="{content: 'js'}"><code class="language-js"><span class="token keyword">function</span> <span class="token function">promiseAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">promiseAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">p</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以上函数，在运行<code>p</code>函数时，首先会调用<code>promiseAction</code>函数，该函数是一个异步函数，所以在函数之前加上<code>await</code>前缀之后，异步就会变成同步运行，下面的代码会等该异步成功之后才会运行，所以最后输出<em>2</em></p>
+<p><strong>以上说的都是Promise基础使用的一些总结，具体的使用还需要结合使用场景进行一定的封装</strong></p>
+<blockquote>
+<p><a href="https://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">参考资料:es6入门</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://juejin.im/post/5afe6d3bf265da0b9e654c4b#heading-6" target="_blank" rel="noopener">参考资料:掘金</a></p>
 </blockquote>
 
         </section>
@@ -756,10 +712,10 @@ wepy<span class="token punctuation">.</span><span class="token function">request
               
             </span>
             <br>
-            <span>本文永久链接：<a href="https://wekerSnail.github.io/2018/11/28/wepy-mpvue/">https://wekerSnail.github.io/2018/11/28/wepy-mpvue/</a></span>
+            <span>本文永久链接：<a href="https://wekerSnail.github.io/2019/05/07/Promise/">https://wekerSnail.github.io/2019/05/07/Promise/</a></span>
             
               <br>
-              <span>本文Markdown：<a href="https://wekerSnail.github.io/2018/11/28/wepy-mpvue/wepy-mpvue.md">https://wekerSnail.github.io/2018/11/28/wepy-mpvue/wepy-mpvue.md</a></span>
+              <span>本文Markdown：<a href="https://wekerSnail.github.io/2019/05/07/Promise/Promise.md">https://wekerSnail.github.io/2019/05/07/Promise/Promise.md</a></span>
             
           </section>
         
@@ -778,8 +734,8 @@ wepy<span class="token punctuation">.</span><span class="token function">request
               </div>
               <div class="mdui-typo">
                 
-                  <a href="/categories/小程序/">
-                    <span>小程序</span>
+                  <a href="/categories/js/">
+                    <span>js</span>
                   </a>
                 
               </div>
@@ -790,8 +746,8 @@ wepy<span class="token punctuation">.</span><span class="token function">request
               </div>
               <div class="mdui-typo">
                 
-                  <a href="/tags/小程序/">
-                    <span>小程序</span>
+                  <a href="/tags/js/">
+                    <span>js</span>
                   </a>
                 
               </div>
@@ -811,7 +767,7 @@ wepy<span class="token punctuation">.</span><span class="token function">request
       </article>
       
         <div class="mdui-color-theme theme-post__toc">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#wepy&#x5BF9;&#x6BD4;mpvue" data-href="#wepy&#x5BF9;&#x6BD4;mpvue"><span class="toc-number"></span> <span class="toc-text">1. wepy&#x5BF9;&#x6BD4;mpvue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5C0F;&#x7A0B;&#x5E8F;&#x914D;&#x7F6E;&#x90E8;&#x5206;" data-href="#&#x5C0F;&#x7A0B;&#x5E8F;&#x914D;&#x7F6E;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.1. &#x5C0F;&#x7A0B;&#x5E8F;&#x914D;&#x7F6E;&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EC4;&#x4EF6;&#x5316;" data-href="#&#x7EC4;&#x4EF6;&#x5316;"><span class="toc-number"></span> <span class="toc-text">1.2. &#x7EC4;&#x4EF6;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6587;&#x4EF6;&#x7ED3;&#x6784;" data-href="#&#x6587;&#x4EF6;&#x7ED3;&#x6784;"><span class="toc-number"></span> <span class="toc-text">1.3. &#x6587;&#x4EF6;&#x7ED3;&#x6784;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5BF9;&#x4E8E;&#x539F;&#x751F;api&#x7684;&#x5F71;&#x54CD;" data-href="#&#x5BF9;&#x4E8E;&#x539F;&#x751F;api&#x7684;&#x5F71;&#x54CD;"><span class="toc-number"></span> <span class="toc-text">1.4. &#x5BF9;&#x4E8E;&#x539F;&#x751F;api&#x7684;&#x5F71;&#x54CD;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#wxml&#x90E8;&#x5206;" data-href="#wxml&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.5. wxml&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#wxss&#x90E8;&#x5206;" data-href="#wxss&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.6. wxss&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#js&#x90E8;&#x5206;" data-href="#js&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.7. js&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6570;&#x636E;&#x7ED1;&#x5B9A;" data-href="#&#x6570;&#x636E;&#x7ED1;&#x5B9A;"><span class="toc-number"></span> <span class="toc-text">1.8. &#x6570;&#x636E;&#x7ED1;&#x5B9A;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6570;&#x636E;&#x7BA1;&#x7406;" data-href="#&#x6570;&#x636E;&#x7BA1;&#x7406;"><span class="toc-number"></span> <span class="toc-text">1.9. &#x6570;&#x636E;&#x7BA1;&#x7406;</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#then&#x7684;&#x7528;&#x6CD5;" data-href="#then&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">1. then&#x7684;&#x7528;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#then&#x7684;&#x94FE;&#x5F0F;&#x8C03;&#x7528;" data-href="#then&#x7684;&#x94FE;&#x5F0F;&#x8C03;&#x7528;"><span class="toc-number"></span> <span class="toc-text">1.0.1. then&#x7684;&#x94FE;&#x5F0F;&#x8C03;&#x7528;</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#reject&#x7684;&#x7528;&#x6CD5;" data-href="#reject&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">2. reject&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#catch&#x7684;&#x7528;&#x6CD5;" data-href="#catch&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">3. catch&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#all&#x7684;&#x7528;&#x6CD5;" data-href="#all&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">4. all&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#race&#x7684;&#x7528;&#x6CD5;" data-href="#race&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">5. race&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#async&#x548C;await&#x7684;&#x4F7F;&#x7528;" data-href="#async&#x548C;await&#x7684;&#x4F7F;&#x7528;"><span class="toc-number"></span> <span class="toc-text">6. async&#x548C;await&#x7684;&#x4F7F;&#x7528;</span></a></li>
         </div>
       
     </div>
@@ -825,7 +781,7 @@ wepy<span class="token punctuation">.</span><span class="token function">request
     <i class="mdui-icon material-icons">&#xe242;</i>
   </button>
   <ul class="mdui-menu mdui-typo theme-post__toc-fab__menu" id="toc-fab-menu" style="padding: 8px;max-height: 80%">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#wepy&#x5BF9;&#x6BD4;mpvue" data-href="#wepy&#x5BF9;&#x6BD4;mpvue"><span class="toc-number"></span> <span class="toc-text">1. wepy&#x5BF9;&#x6BD4;mpvue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5C0F;&#x7A0B;&#x5E8F;&#x914D;&#x7F6E;&#x90E8;&#x5206;" data-href="#&#x5C0F;&#x7A0B;&#x5E8F;&#x914D;&#x7F6E;&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.1. &#x5C0F;&#x7A0B;&#x5E8F;&#x914D;&#x7F6E;&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x7EC4;&#x4EF6;&#x5316;" data-href="#&#x7EC4;&#x4EF6;&#x5316;"><span class="toc-number"></span> <span class="toc-text">1.2. &#x7EC4;&#x4EF6;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6587;&#x4EF6;&#x7ED3;&#x6784;" data-href="#&#x6587;&#x4EF6;&#x7ED3;&#x6784;"><span class="toc-number"></span> <span class="toc-text">1.3. &#x6587;&#x4EF6;&#x7ED3;&#x6784;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5BF9;&#x4E8E;&#x539F;&#x751F;api&#x7684;&#x5F71;&#x54CD;" data-href="#&#x5BF9;&#x4E8E;&#x539F;&#x751F;api&#x7684;&#x5F71;&#x54CD;"><span class="toc-number"></span> <span class="toc-text">1.4. &#x5BF9;&#x4E8E;&#x539F;&#x751F;api&#x7684;&#x5F71;&#x54CD;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#wxml&#x90E8;&#x5206;" data-href="#wxml&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.5. wxml&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#wxss&#x90E8;&#x5206;" data-href="#wxss&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.6. wxss&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#js&#x90E8;&#x5206;" data-href="#js&#x90E8;&#x5206;"><span class="toc-number"></span> <span class="toc-text">1.7. js&#x90E8;&#x5206;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6570;&#x636E;&#x7ED1;&#x5B9A;" data-href="#&#x6570;&#x636E;&#x7ED1;&#x5B9A;"><span class="toc-number"></span> <span class="toc-text">1.8. &#x6570;&#x636E;&#x7ED1;&#x5B9A;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x6570;&#x636E;&#x7BA1;&#x7406;" data-href="#&#x6570;&#x636E;&#x7BA1;&#x7406;"><span class="toc-number"></span> <span class="toc-text">1.9. &#x6570;&#x636E;&#x7BA1;&#x7406;</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#then&#x7684;&#x7528;&#x6CD5;" data-href="#then&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">1. then&#x7684;&#x7528;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#then&#x7684;&#x94FE;&#x5F0F;&#x8C03;&#x7528;" data-href="#then&#x7684;&#x94FE;&#x5F0F;&#x8C03;&#x7528;"><span class="toc-number"></span> <span class="toc-text">1.0.1. then&#x7684;&#x94FE;&#x5F0F;&#x8C03;&#x7528;</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#reject&#x7684;&#x7528;&#x6CD5;" data-href="#reject&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">2. reject&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#catch&#x7684;&#x7528;&#x6CD5;" data-href="#catch&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">3. catch&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#all&#x7684;&#x7528;&#x6CD5;" data-href="#all&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">4. all&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#race&#x7684;&#x7528;&#x6CD5;" data-href="#race&#x7684;&#x7528;&#x6CD5;"><span class="toc-number"></span> <span class="toc-text">5. race&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#async&#x548C;await&#x7684;&#x4F7F;&#x7528;" data-href="#async&#x548C;await&#x7684;&#x4F7F;&#x7528;"><span class="toc-number"></span> <span class="toc-text">6. async&#x548C;await&#x7684;&#x4F7F;&#x7528;</span></a></li>
   </ul>
 </div>
 
@@ -834,28 +790,18 @@ wepy<span class="token punctuation">.</span><span class="token function">request
   
     <div class="theme-post__pagination mdui-color-theme">
   
-    <div class="theme-post__pagination__prev mdui-ripple mdui-valign">
-      <a href="/2018/12/15/jjz/" class="theme-post__pagination__prev__content mdui-text-left">
-        <div>
-          <i class="mdui-icon material-icons mdui-text-center">&#xe5cb;</i>
-          <span class="mdui-typo-body-2-opacity mdui-text-center">新的文章</span>
-        </div>
-        <div class="mdui-typo-title mdui-text-truncate">
-          canvas接红包游戏
-        </div>
-      </a>
-    </div>
+    <div class="theme-spacer mdui-hidden-xs"></div>
   
 
   
     <div class="theme-post__pagination__next mdui-ripple mdui-valign">
-      <a href="/2018/11/23/mpvue/" class="theme-post__pagination__next__content mdui-text-right">
+      <a href="/2019/04/10/vscode-markdown/" class="theme-post__pagination__next__content mdui-text-right">
         <div>
           <span class="mdui-typo-body-2-opacity mdui-text-center">旧的文章</span>
           <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
         </div>
         <div class="mdui-typo-title mdui-text-truncate">
-          mpvue
+          vscode的markdown编辑
         </div>
       </a>
     </div>
@@ -967,7 +913,7 @@ wepy<span class="token punctuation">.</span><span class="token function">request
 
 <script type="text/javascript">
   (function() {
-    var postLastModifiedDate = 1554885241339
+    var postLastModifiedDate = 1557199230134
     var today = (new Date()).getTime()
     var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
     if (difference >= 100) {
