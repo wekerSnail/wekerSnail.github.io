@@ -33,7 +33,7 @@
         -->
 
   <meta charset="UTF-8">
-  <title>2018 - weker</title>
+  <title>关于vue方面使用的一些问题整理 - weker</title>
 
   <!-- Favicons -->
   <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
@@ -48,7 +48,9 @@
 
   <meta name="author" content="Weker">
   
-  <meta name="keywords" content="blog, hexo, mdui">
+      <meta name="description" itemprop="description" content="最近在使用vue封装组件时，遇到一些疑问，最后也通过网上的一些文章得到了解决，于是就想对这些问题进行一个整理，也方面以后的查看">
+  
+  <meta name="keywords" content="blog, hexo, mdui,vue">
 
   <!--iOS -->
   <meta name="apple-mobile-web-app-title" content="weker">
@@ -63,10 +65,14 @@
   <!-- The Open Graph protocol -->
   <meta property="og:url" content="https://wekerSnail.github.io">
   <meta property="og:type" content="blog">
-  <meta property="og:title" content="2018 - weker | weker">
+  <meta property="og:title" content="关于vue方面使用的一些问题整理 - weker | weker">
   <meta property="og:image" content="/images/favicon.png">
   
+    <meta property="og:description" content="最近在使用vue封装组件时，遇到一些疑问，最后也通过网上的一些文章得到了解决，于是就想对这些问题进行一个整理，也方面以后的查看">
+  
 
+  
+    <meta property="og:article:tag" content="vue">
   
 
   
@@ -434,7 +440,7 @@
           </div>
         </div>
       
-      <div class="mdui-collapse-item mdui-collapse-item-open">
+      <div class="mdui-collapse-item ">
         <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
           <i class="mdui-list-item-icon mdui-icon material-icons">&#xe916;</i>
           <div class="mdui-list-item-content">年份</div>
@@ -533,271 +539,341 @@
     <script src="/js/lightgallery.min.js"></script>
 
     <div id="barba-wrapper">
-      <div class="barba-container"  data-namespace="archives">
+      <div class="barba-container"  data-namespace="post">
         
-  <div class="theme-archive">
+
+
+
+  <link rel="stylesheet" href="/css/prism/okaidia.min.css">
+
+
+  <link rel="stylesheet" href="/css/prism/line-number.min.css">
+
+
+<div class="theme-post">
+  <div class="theme-post__background mdui-color-theme"></div>
+  <div class="theme-post__header mdui-color-theme">
+    <div class="theme-post__header__title mdui-text-truncate">
+      关于vue方面使用的一些问题整理
+    </div>
+    <div class="theme-spacer"></div>
+    <div class="theme-post__header__actions mdui-valign">
+      <div>
+        <span>编写时间：</span>
+        <span style="float: right">5月 29, 2019</span>
+        
+      </div>
+      
+
+      
+  <div class="theme-post__share">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon" mdui-menu="{target: '#post-share-menu'}">
+      <i class="mdui-icon material-icons">&#xe80d;</i>
+    </button>
+
+    <ul class="mdui-menu" id="post-share-menu">
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://wekerSnail.github.io//2019/05/29/vue-use/index.html" target="_blank" class="mdui-ripple">
+                分享到Facebook
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://plus.google.com/share?url=https://wekerSnail.github.io//2019/05/29/vue-use/index.html" target="_blank" class="mdui-ripple">
+                分享到Google+
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://wekerSnail.github.io//2019/05/29/vue-use/index.html&title=关于vue方面使用的一些问题整理" target="_blank" class="mdui-ripple">
+                分享到Linkedin
+            </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://twitter.com/intent/tweet?text=关于vue方面使用的一些问题整理&url=https://wekerSnail.github.io//2019/05/29/vue-use/index.html&via=Weker" target="_blank" class="mdui-ripple">
+                分享到Twitter
+            </a>
+        </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+  <div class="theme-post__warpper
     
-<div id="side-content" class="mdui-color-green theme-archive__side-content">
-  <div class="mdui-grid-tile" style="overflow: visible;margin-bottom: 0;">
-    <div class="theme-archive__side-content__bg">
-      <img src="/images/random/23.png">
-    </div>
-  </div>
-  <div class="theme-archive__side-content__content">
-    <img class="mdui-img-circle theme-archive__side-content__avatar" src="/images/head.jpg">
-    <div class="theme-archive__side-content__author mdui-text-center">
-      Weker
-    </div>
-    <div class="theme-archive__side-content__name">
-      2018
-    </div>
-    <div class="theme-archive__side-content__length">
-      
-      2篇文章
-    </div>
-  </div>
-</div>
-<div id="contentLocation"></div>
-
-    <div class="theme-posts">
-      
+      theme-post__warpper--center
+    
+  ">
+    <div class="theme-post__warpper__container">
+      <article class="mdui-card theme-post__card mdui-hoverable">
+        <section class="theme-post__card__warning">
+          这篇文章最后修改于
+          <span id="content-warning"></span>
+          天之前。
+          本页内容可能已经过时！
+        </section>
         
-            
+        
+          <section class="mdui-card-media">
+            <img src="/images/random/1.png">
+          </section>
+        
+        <section class="mdui-typo theme-post__card__content">
+          <p>具体的整理文章直接放到了语雀文档上面，感觉语雀文档还是一个比较好用的文章工具</p>
+<p><a href="https://www.yuque.com/weker/spsuly" target="_blank" rel="noopener">整理文章</a></p>
 
+        </section>
 
-  <div class="theme-posts__post">
-    <article class="mdui-card mdui-hoverable">
-      <section class="mdui-card-media theme-posts__post__media" style="background-image: url(/images/random/6.png)">
-        <img src="/images/random/6.png" class="theme-posts__post__media__image">
-        <div class="mdui-card-media-covered theme-posts__post__media-covered">
-          <div class="mdui-card-primary mdui-typo">
-            <a href="/2018/12/18/wepy-subpackage/" target="_self" class="mdui-card-primary-title mdui-text-truncate">
+        
+          <section class="theme-post__card__license mdui-typo">
+            <span>
+              本文许可协议：
               
-              wepy分包加载问题
-            </a>
-          </div>
-        </div>
-      </section>
-      <section class="mdui-card-content">
-        在使用分包加载的配置后，wepy的打包是没有问题的，正常的编译了所有的文件，然后在主包页面往分包页面跳转的时候就出现问题了。
-编译器始...
-      </section>
-      <div class="mdui-divider" style="margin: 0 16px;"></div>
-      <section class="theme-posts__post__footer">
-        
-          
-            
-              <a href="/categories/小程序/" class="theme-link--no-style">
-                <div class="mdui-chip theme-posts__post__footer__categories">
-                  <span class="mdui-chip-icon">
-                    <i class="mdui-icon material-icons mdui-text-center">&#xe86e;</i>
-                  </span>
-                  <span class="mdui-chip-title">小程序</span>
-                </div>
-              </a>
-            
-          
-        
-        
-          
-            
-              <a href="/tags/小程序/" class="theme-link--no-style">
-                <div class="mdui-chip theme-posts__post__footer__tags">
-                  <span class="mdui-chip-icon">
-                    <i class="mdui-icon fa fa-tags mdui-text-center"></i>
-                  </span>
-                  <span class="mdui-chip-title">小程序</span>
-                </div>
-              </a>
-            
-          
-        
-        <div class="theme-spacer"></div>
-        <div class="mdui-valign">
-          <div>
-            12月 18, 2018
-          </div>
-        </div>
-      </section>
-    </article>
-  </div>
-
-
-        
-            
-
-
-  <div class="theme-posts__post">
-    <article class="mdui-card mdui-hoverable">
-      <section class="mdui-card-media theme-posts__post__media" style="background-image: url(/images/random/38.png)">
-        <img src="/images/random/38.png" class="theme-posts__post__media__image">
-        <div class="mdui-card-media-covered theme-posts__post__media-covered">
-          <div class="mdui-card-primary mdui-typo">
-            <a href="/2018/12/15/jjz/" target="_self" class="mdui-card-primary-title mdui-text-truncate">
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
               
-              canvas接红包游戏
-            </a>
-          </div>
-        </div>
-      </section>
-      <section class="mdui-card-content">
-        由于工作业务基本用不到canvas，所以之前对canvas也没有做多少了解，仅是知道canvas是html5中用于绘制图形使用，通过js可以绘制出任...
-      </section>
-      <div class="mdui-divider" style="margin: 0 16px;"></div>
-      <section class="theme-posts__post__footer">
-        
-          
+            </span>
+            <br>
+            <span>本文永久链接：<a href="https://wekerSnail.github.io/2019/05/29/vue-use/">https://wekerSnail.github.io/2019/05/29/vue-use/</a></span>
             
-              <a href="/categories/canvas/" class="theme-link--no-style">
-                <div class="mdui-chip theme-posts__post__footer__categories">
-                  <span class="mdui-chip-icon">
-                    <i class="mdui-icon material-icons mdui-text-center">&#xe86e;</i>
-                  </span>
-                  <span class="mdui-chip-title">canvas</span>
-                </div>
-              </a>
+              <br>
+              <span>本文Markdown：<a href="https://wekerSnail.github.io/2019/05/29/vue-use/vue-use.md">https://wekerSnail.github.io/2019/05/29/vue-use/vue-use.md</a></span>
             
-          
+          </section>
         
-        
-          
-            
-              <a href="/tags/canvas/" class="theme-link--no-style">
-                <div class="mdui-chip theme-posts__post__footer__tags">
-                  <span class="mdui-chip-icon">
-                    <i class="mdui-icon fa fa-tags mdui-text-center"></i>
-                  </span>
-                  <span class="mdui-chip-title">canvas</span>
-                </div>
-              </a>
-            
-          
-        
-        <div class="theme-spacer"></div>
-        <div class="mdui-valign">
-          <div>
-            12月 15, 2018
-          </div>
-        </div>
-      </section>
-    </article>
-  </div>
-
 
         
+          <section class="mdui-card-actions theme-post__card__actions">
+            
+              <button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-ripple  mdui-color-red" mdui-tooltip="{content: '打赏', position: 'right'}" mdui-dialog="{target: '#donateDialog'}">
+                <i class="mdui-icon fa fa-beer"></i>
+              </button>
+            
+            <div class="theme-spacer"></div>
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon material-icons">&#xe149;</i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/categories/vue/">
+                    <span>vue</span>
+                  </a>
+                
+              </div>
+            
+            
+              <div class="mdui-chip theme-post__card__chip--bg theme-post__card__chip--margin">
+                <span class="mdui-chip-icon theme-post__card__chip--bg"><i class="mdui-icon mdui-text-color-black-icon fa fa-tags"></i></span>
+              </div>
+              <div class="mdui-typo">
+                
+                  <a href="/tags/vue/">
+                    <span>vue</span>
+                  </a>
+                
+              </div>
+            
+          </section>
         
-          <div class="theme-end-footer">
-            <div class="mdui-text-center mdui-text-color-theme-text">
-              看起来已经没有了
-            </div>
-          </div>
+
         
-    </div>
-    <button id="index-fab" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent mdui-fab-hide" onclick="smoothScroll.animateScroll( 0 );">
-  <i class="mdui-icon material-icons">&#xe5d8;</i>
-</button>
-
-  </div>
-  <script type="text/javascript">
-  themeRuntime.scriptsMap.archives = [];
-  (function() {
-    var fabTopFlag = false;
-    var fabEl = document.getElementById('index-fab');
-    function fabShowHide() {
-      var bodyScrolled = document.documentElement.scrollTop || document.body.scrollTop;
-      if (bodyScrolled > 0 && !fabTopFlag) {
-        fabEl.classList.remove('mdui-fab-hide');
-        fabTopFlag = true;
-      } else if (bodyScrolled === 0 && fabTopFlag) {
-        fabEl.classList.add('mdui-fab-hide');
-        fabTopFlag = false;
-      }
-    }
-    fabShowHide()
-    window.addEventListener('scroll', fabShowHide);
-    var listener = {
-      function: fabShowHide,
-      event: 'scroll',
-      el: window,
-      removed: false
-    }
-    themeRuntime.scriptsMap.archives.push(listener)
-  })();
-
-  (function() {
-    var pageTotal = 1
-    var pageNext = 2
-    themeRuntime.temp = {
-      index: 1
-    }
-    function morePosts() {
-      var screenHeight = window.innerHeight;
-      var compareHeight = document.body.clientHeight -  (document.documentElement.scrollTop || document.body.scrollTop);
-      var loadStatus = pageNext - themeRuntime.temp.index
-      if (screenHeight >= compareHeight && loadStatus === 1) {
-        if (pageNext <= pageTotal) {
-          loadProgress(false)
-          var url = window.location.href + "page/" + pageNext
-          themeRuntime.temp.index = pageNext;
-          //console.log(pageTotal, url)
-          fetch(url, {
-              method:'GET',
-              mode:'cors',
-              credentials: 'include'
-          })
-          .then(function(response) {
-            return response.text()
-          }).then(function(HTML) {
-            var fakeDom = document.createElement('html');
-            fakeDom.innerHTML = HTML
-            var morePostsHTML = fakeDom.querySelector('.theme-posts').innerHTML
-            var postsArea = document.querySelector(".theme-posts")
-            loadProgress(true)
-            postsArea.insertAdjacentHTML('beforeend', morePostsHTML)
-            pageNext++;
-          }).catch(function(error) {
-            mdui.alert(error, "错误！");
-          })
-        }
-      }
-    }
-    window.addEventListener('scroll', morePosts);
-    var listener = {
-      function: morePosts,
-      event: 'scroll',
-      el: window,
-      removed: false
-    }
-    themeRuntime.scriptsMap.archives.push(listener)
-  })();
-</script>
+          
+            <section>
+              <div class="mdui-divider"></div>
+            </section>
+            <section class="theme-post__card__comment">
+              
+  <div id="container"></div>
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
 <script>
-  var content_flag = false;
-  const appbar = document.querySelector('.theme-appbar')
-  const body = document.querySelector('body')
-  const title = document.querySelector('.theme-toolbar-bottom__title')
-  window.addEventListener('scroll', styleScrolled)
-  var listener = {
-    function: styleScrolled,
-    event: 'scroll',
-    el: window,
-    removed: false
-  }
-  themeRuntime.scriptsMap.archives.push(listener)
+var gitment = new Gitment({
+  owner: 'wekerSnail',
+  repo: 'wekersnail.github.io',
+  oauth: {
+    client_id: '24396caba2d2b111e48b',
+    client_secret: '76a401918e5f8e6f47a680af5768eb89363c39cf',
+  },
+})
+gitment.render('container')
+</script>
 
-  function styleScrolled() {
-    var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-    var divTop = document.querySelector('div#contentLocation').offsetTop
-    var contentLocation = divTop - scrollTop - 128;
-    if (!content_flag && contentLocation < 0 && window.innerWidth < 860) {
-      body.classList.remove('theme-archive--style-change');
-      content_flag = true;
-    } else if (content_flag && contentLocation >= 0 && window.innerWidth < 860) {
-      body.classList.add('theme-archive--style-change');
-      content_flag = false;
-    };
+
+            </section>
+          
+        
+      </article>
+      
+    </div>
+  </div>
+
+  <div class="theme-spacer"></div>
+
+  
+
+  
+    <div class="theme-post__pagination mdui-color-theme">
+  
+    <div class="theme-spacer mdui-hidden-xs"></div>
+  
+
+  
+    <div class="theme-post__pagination__next mdui-ripple mdui-valign">
+      <a href="/2019/05/09/jobs/" class="theme-post__pagination__next__content mdui-text-right">
+        <div>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">旧的文章</span>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          史蒂夫•乔布斯传读后感
+        </div>
+      </a>
+    </div>
+    
+</div>
+
+  
+
+  
+    <div class="mdui-dialog" id="donateDialog">
+      <div class="mdui-dialog-title">打赏</div>
+      <div class="mdui-dialog-content">
+        <div class="mdui-list">
+          
+        </div>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple mdui-ripple" mdui-dialog-close>不要</button>
+      </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+  themeRuntime.scriptsMap.post = [];
+  if (document.querySelector('.theme-post__toc-fab__menu > ol') !== null && document.querySelector('.theme-post__toc > ol') !== null) {
+    tocHighlight()
+    function tocHighlight() {
+      var timer;
+      function doWork() {
+        listens.forEach(function(value, index) {
+          value[1]();
+          value[0].classList.remove("mdui-list-item-active");
+        })
+        let actionToc = (listens[listens.reduce(function(r, v, index) {
+          if (v[2] == true) {
+            return index;
+          } else return r;
+        }, undefined)] || [])[0] || listens[0][0];
+        actionToc.classList.add("mdui-list-item-active");
+        if(actionToc.getClientRects().length == 0)return;
+        showToc(actionToc);
+      }
+      function showToc(toc) {
+        let offsetTop = toc.getClientRects()[0].top - cardToc.getClientRects()[0].top - 40;
+        let offsetBottom = toc.getClientRects()[0].bottom - cardToc.getClientRects()[0].bottom + 40;
+        let offset = 0;
+        if (offsetTop < 0) offset = offsetTop;
+        if (offsetBottom > 0) offset = offsetBottom;
+        var targetTop = Math.max(0, Math.min(cardToc.scrollTop + offset, toclist.offsetHeight - cardToc.offsetHeight));
+        clearInterval(timer);
+        timer = setInterval(function() {
+          var now = cardToc.scrollTop;
+          var speed = (targetTop - now) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (Math.abs(now - targetTop) < 1) {
+            clearInterval(timer);
+          }
+          cardToc.scrollTop = now + speed;
+        }, 30);
+      }
+      var listens = [];
+      var cardToc = document.querySelector('.theme-post__toc');
+      var links = cardToc.querySelectorAll(".theme-post__toc__content__link");
+      var toclist = document.querySelector(".theme-post__toc > ol");
+      Array.prototype.forEach.call(links, function(value, index) {
+        var id = (value.getAttribute("href") || "#").slice(1);
+        var element = document.getElementById(id);
+        listens.push([value, function() {
+          var readed = false;
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+          if (element.offsetTop <= scrollTop + element.clientHeight + 64) {
+            readed = true;
+          } else {
+            readed = false;
+          }
+          listens[index][2] = readed;
+        }, false])
+      })
+      doWork();
+      window.addEventListener("scroll", doWork)
+      var listener = {
+        function:  doWork,
+        event: 'scroll',
+        el: window,
+        removed: false
+      }
+      themeRuntime.scriptsMap.post.push(listener)
+    }
   }
 </script>
+
+<script type="text/javascript">
+  (function() {
+    var postLastModifiedDate = 1559115836876
+    var today = (new Date()).getTime()
+    var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
+    if (difference >= 100) {
+      document.querySelector('.theme-post__card__warning').style.display = 'block'
+      document.querySelector('#content-warning').textContent = difference
+    }
+  })();
+</script>
+
+<script type="text/javascript">
+  var images = document.querySelectorAll('.theme-post__card__content img')
+  for (i = 0; i < images.length; i++) {
+    //console.log('image added', i)
+    images[i].addEventListener("click", openLG);
+    var listener = {
+      function:  openLG,
+      event: 'click',
+      el: images[i],
+      removed: false
+    }
+    themeRuntime.scriptsMap.post.push(listener)
+  }
+  function openLG() {
+    var img_src = this.getAttribute('src');
+    var img_alt = this.getAttribute('alt');
+    lightGallery(this, {
+      dynamic: true,
+      counter: false,
+      dynamicEl: [{
+        "src": img_src,
+        'subHtml': "<span author>Weker</span><div descr>" + img_alt + "</div>"
+      }],
+    });
+  }
+</script>
+
 
 
 
